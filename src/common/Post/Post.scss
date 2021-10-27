@@ -1,0 +1,33 @@
+$pure-white: #fefefe;
+$background: rgba(255, 255, 255, 96%);
+$dark: #2a2a2d;
+$shadow: #555;
+$error: #f22929;
+$main: #2944f2;
+$corner: 0.6em;
+
+.Post {
+  background: $background;
+  padding: 0.8em 1.4em;
+  min-height: 36%;
+  min-width: 36%;
+  border-radius: $corner;
+  h2, p {
+    text-align: center;
+  }
+}
+
+.user-group {
+  margin: 0.6em 0;
+  display: flex;
+  align-items: center;
+  a {
+    padding: 0.2em;
+    text-decoration: none;
+    font-weight: 500;
+    color: $dark;
+  }
+  a:visited {
+    color: inherit;
+  }
+}
