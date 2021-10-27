@@ -1,10 +1,11 @@
 .Avatar {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   overflow: hidden;
+  margin: 5px;
 
-  &__image {
+  img {
     width: 100%;
   }
 }

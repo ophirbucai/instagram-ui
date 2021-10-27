@@ -1,9 +1,10 @@
 import React from 'react';
+import './Avatar.scss';
 
-function Avatar(props) {
+function Avatar({ image }) {
     return (
         <div className="Avatar">
-            <img src="{props.image}" alt="Show Instagram profile" />
+            <img src={image} alt="" />
         </div>
     );
 }

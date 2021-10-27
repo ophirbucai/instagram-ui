@@ -5,6 +5,8 @@ import { useState, createContext, useEffect } from "react";
 import Header from './Header/Header';
 import Login from './Login/Login'
 import { me } from "./services/userService";
+import Feed from "./Feed/Feed";
+import PostCreate from "./PostCreate/PostCreate";
 export const UserContext = createContext();
 
 function App() {
@@ -15,7 +17,7 @@ function App() {
         me()
             .then(loggedUser => {
                 if (!isLoggedIn(loggedUser)) {
-                    history.push('./register');
+                    history.push('/register');
                     return;
                 }
                 setUser(loggedUser);
@@ -37,6 +39,12 @@ function App() {
                 </Route>
                 <Route path="/sign-in">
                     <Login />
+                </Route>
+                <Route path="/post/create">
+                    <PostCreate />
+                </Route>
+                <Route path="/">
+                    <Feed />
                 </Route>
             </Switch>
         </div>

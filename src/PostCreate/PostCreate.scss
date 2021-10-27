@@ -1,0 +1,13 @@
+.PostCreate {
+  margin: 35vh auto;
+  max-width: 33vw;
+  background: $background;
+  padding: 0.8em 1.4em;
+  box-shadow: 0 0 2em $background;
+  min-height: 36%;
+  min-width: 36%;
+  border-radius: $corner;
+  h2, p {
+    text-align: center;
+  }
+}

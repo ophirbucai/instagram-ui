@@ -1,0 +1,10 @@
+.HeaderProfile {
+  display: flex;
+  align-items: center;
+  margin: 7px;
+
+  &__username {
+    color: #ffffff;
+    margin-left: 6px;
+  }
+}
