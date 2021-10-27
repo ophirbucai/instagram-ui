@@ -27,7 +27,7 @@ function Register(props) {
                 <Form>
                     <div className="field">
                         <label htmlFor="username">username:</label>
-                        <Field autoFocus type="text" id="username" name="username"/>
+                        <Field type="text" id="username" name="username"/>
                         <ErrorMessage name="username" component="span" />
                     </div>
                     <div className="field">
