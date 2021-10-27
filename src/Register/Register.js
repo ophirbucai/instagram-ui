@@ -2,19 +2,20 @@ import React from 'react';
 import './Register.scss';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { registerSchema } from "./register.schema";
+import { register } from '../services/userService';
+import { useHistory } from 'react-router-dom';
 
-function Register(props) {
+function Register() {
+    const history = useHistory();
 
     async function submit(values) {
-        const res = await fetch('http://localhost:4000/user', {
-            method: 'POST',
-            body: JSON.stringify(values),
-            header: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const json = await res.json();
-        console.log(json);
+        try {
+            await register(values);
+            history.push('/sign-in');
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
     return (
         <div className="Register">
@@ -25,26 +26,29 @@ function Register(props) {
                 validationSchema={registerSchema}
                 onSubmit={submit}>
                 <Form>
-                    <div className="field">
+                    <div className="form-group">
                         <label htmlFor="username">username:</label>
                         <Field type="text" id="username" name="username"/>
-                        <ErrorMessage name="username" component="span" />
+                        <ErrorMessage className="error-message" name="username" component="span" />
                     </div>
-                    <div className="field">
+                    <div className="form-group">
                         <label htmlFor="email">email:</label>
                         <Field type="text" id="email" name="email"/>
-                        <ErrorMessage name="email" component="span" />
+                        <ErrorMessage className="error-message" name="email" component="span" />
                     </div>
-                    <div className="field">
+                    <div className="form-group">
                         <label htmlFor="password">password:</label>
                         <Field type="password" id="password" name="password"/>
-                        <ErrorMessage name="password" component="span" />
+                        <ErrorMessage className="error-message" name="password" component="span" />
                     </div>
-                    <div>
+                    <div className="submit">
                         <button type='submit'>Register</button>
                     </div>
                 </Form>
             </Formik>
+            <div className="sign-in-container">
+                Already signed up? <a href="/sign-in">Sign in</a>
+            </div>
         </div>
     );
 }

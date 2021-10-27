@@ -1,39 +1,67 @@
 $pure-white: #fefefe;
-$white: #eee;
-$black: #111;
-$main: #f22929;
+$background: rgba(255, 255, 255, 97%);
+$shadow: #555;
+$error: #f22929;
+$main: #2944f2;
+$corner: 0.6em;
 
 .Register {
-  background: $white;
+  background: $background;
   padding: 0.8em 1.4em;
+  border-radius: $corner;
+  h2, p {
+    text-align: center;
+  }
 }
 
-.Register h2, .Register p {
-  text-align: center;
-}
-
-.Register form {
-  background: $white;
-}
-
-.Register div {
+.form-group {
   margin-bottom: 0.8em;
   display: flex;
   justify-content: space-between;
   position: relative;
+  label {
+    margin: 0.4em 0;
+    text-transform: capitalize;
+  }
+  input {
+    width: 70%;
+    font-size: 1em;
+    padding: 0.3em 0.5em;
+    font-family: inherit;
+    text-transform: lowercase;
+    letter-spacing: inherit;
+    //&:-webkit-autofill {
+    //  -webkit-background-clip: text !important;
+    //}
+  }
 }
 
-.Register label {
-  margin: 0.4em 0;
+.error-message {
+  position: absolute;
+  left: 102%;
+  background: $pure-white;
+  border-radius: $corner;
+  padding: 0.35em 0.85em;
+  box-shadow: 2px 2px 5px $shadow;
+  width: 50%;
+  font-weight: 500;
+  color: #2a2a2d;
+
+  &:before {
+    position: absolute;
+    left: -2.3em;
+    content: "!";
+    display: inline-block;
+    border-radius: 50%;
+    border: .10em solid $error;
+    width: 1.4em;
+    text-align: center;
+    color: $error;
+    font-weight: 400;
+  }
 }
 
-.Register input {
-  width: 70%;
-  font-size: 1em;
-  padding: 0.3em 0.5em;
-}
-
-.Register button {
+.submit button {
   width: 100%;
   background: $main;
   color: $pure-white;
@@ -41,131 +69,17 @@ $main: #f22929;
   font-size: 1em;
   border: none;
   padding: 0.6em 0;
+  &:active {
+    opacity: 0.8;
+  }
 }
 
-.Register div span {
-  position: absolute;
-  left: 102%;
-  background: $pure-white;
-  //border: 1px solid whitesmoke;
-  padding: 0.35em 0.85em;
-  border-radius: 0.5em;
-  box-shadow: 2px 2px 5px $black;
-  width: 50%;
-  user-select: none;
-  z-index: 999;
+.sign-in-container {
+  margin: 0.6em 0;
+  a {
+    padding: 0.2em;
+  }
+  a:visited {
+    color: $main;
+  }
 }
-
-.Register div span:before {
-  position: absolute;
-  left: -2em;
-  content: "!";
-  display: inline-block;
-  border-radius: 50%;
-  border: .10em solid $main;
-  width: 1.15em;
-  text-align: center;
-  color: $main;
-}
-
-//.Register form {
-//  display: flex;
-//  flex-direction: column;
-//}
-
-//$white: #ffffff;
-//
-//.Register {
-//  background: $white;
-//}
-//
-//.Register input {
-//  padding: 0.6em 1em;
-//  margin: 8px 0;
-//}
-//
-//.Register h2 {
-//  font-weight: 100;
-//  font-size: 2em;
-//  color: $white;
-//}
-//
-//.Register p {
-//  font-weight: 700;
-//  color: white;
-//}
-//
-//.Register form {
-//  display: grid;
-//  place-items: center;
-//  grid-template-rows: 1fr 1fr;
-//}
-//
-//.Register label {
-//  color: white;
-//  padding-right: 0.5em;
-//}
-//
-//.Register button {
-//
-//}
-//
-//.field {
-//  position: relative;
-//}
-//
-//.field span {
-//  position: absolute;
-//  color: $white;
-//  //background: whitesmoke;
-//  font-size: 0.7em;
-//  z-index: 999;
-//  padding: 0.35em;
-//  width: 100%;
-//  justify-self: center;
-//}
-//
-//.field span:before {
-//  content: '!';
-//  font-weight: 700;
-//  text-align: center;
-//  border: 2px solid red;
-//  width: 10px;
-//  display: inline-block;
-//  border-radius: 50%;
-//}
-
-//.register button {
-//    border: 1px solid #ccc;
-//}
-//
-//.register h2 {
-//    /*font-weight: 400;*/
-//    color: white;
-//}
-//
-//.register p {
-//    color: white;
-//}
-//
-//.register form {
-//    display: flex;
-//    flex-direction: column;
-//}
-//
-//button {
-//    padding: 0.5em;
-//    border: none;
-//    background: white;
-//    margin-bottom: 0.5em;
-//    border-radius: 0.25em;
-//}
-//
-//input[type="submit"] {
-//    background: rgb(110, 255, 185);
-//    border-radius: 0.25em;
-//    border: none;
-//    width: 20%;
-//    align-self: flex-end;
-//    padding: 0.15em;
-//}
