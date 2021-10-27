@@ -3,6 +3,7 @@ import Register from "./Register/Register";
 import { Route, Switch, useHistory } from 'react-router-dom';
 import { useState, createContext, useEffect } from "react";
 import Header from './Header/Header';
+import Login from './Login/Login'
 import { me } from "./services/userService";
 export const UserContext = createContext();
 
@@ -33,6 +34,9 @@ function App() {
             <Switch>
                 <Route path="/register">
                     <Register />
+                </Route>
+                <Route path="/sign-in">
+                    <Login />
                 </Route>
             </Switch>
         </div>

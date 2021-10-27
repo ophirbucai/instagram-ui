@@ -1,5 +1,6 @@
 $pure-white: #fefefe;
-$background: rgba(255, 255, 255, 97%);
+$background: rgba(255, 255, 255, 96%);
+$dark: #2a2a2d;
 $shadow: #555;
 $error: #f22929;
 $main: #2944f2;
@@ -8,6 +9,7 @@ $corner: 0.6em;
 .Register {
   background: $background;
   padding: 0.8em 1.4em;
+  box-shadow: 0 0 2em $background;
   min-height: 47.5%;
   min-width: 36%;
   border-radius: $corner;
@@ -33,6 +35,8 @@ $corner: 0.6em;
     text-transform: lowercase;
     letter-spacing: inherit;
     outline: none;
+    border: 1px solid $dark;
+    border-radius: $corner / 2;
   }
 }
 
@@ -84,6 +88,6 @@ $corner: 0.6em;
     padding: 0.2em;
   }
   a:visited {
-    color: $main;
+    color: inherit;
   }
 }

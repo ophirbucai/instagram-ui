@@ -3,7 +3,7 @@ import './Register.scss';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { registerSchema } from "./register.schema";
 import { register } from '../services/userService';
-import { useHistory } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 function Register() {
     const history = useHistory();
@@ -47,7 +47,7 @@ function Register() {
                 </Form>
             </Formik>
             <div className="sign-in-container">
-                Already signed up? <a href="/sign-in">Sign in</a>
+                Already signed up? <Link to="/sign-in">Sign in</Link>
             </div>
         </div>
     );
