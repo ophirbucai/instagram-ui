@@ -3,6 +3,7 @@ import './Post.scss'
 import Avatar from '../Avatar/Avatar';
 import { Link } from 'react-router-dom';
 import config from '../../config/index';
+import PostDate from './PostDate/PostDate';
 
 function Post({ data }) {
     return (
@@ -16,7 +17,7 @@ function Post({ data }) {
                     </Link>
                 </div>
                 <div className="date">
-                    {/* <PostDate date={data.createdAt} /> */}
+                     <PostDate date={data.createdAt} />
                 </div>
             </header>
             <div className="image">
