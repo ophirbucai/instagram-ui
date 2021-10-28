@@ -1,0 +1,27 @@
+$pure-white: #fefefe;
+$background: rgba(255, 255, 255, 96%);
+$dark: #2a2a2d;
+$shadow: #555;
+$error: #f22929;
+$main: #2944f2;
+$corner: 0.6em;
+
+.TopMenu {
+  padding: 0;
+  display: flex;
+  li {
+    list-style: none;
+    margin: 1em 0;
+    a {
+      color: $pure-white;
+      padding: 1em 0.7em;
+      transition: color 200ms ease-in;
+      &:visited {
+        color: $pure-white;
+      }
+      &:hover {
+        color: $main;
+      }
+    }
+  }
+}

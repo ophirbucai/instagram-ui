@@ -1,10 +1,12 @@
+$pure-white: #fefefe;
+
 .HeaderProfile {
   display: flex;
   align-items: center;
   margin: 7px;
 
   &__username {
-    color: #ffffff;
+    color: $pure-white;
     margin-left: 6px;
   }
 }

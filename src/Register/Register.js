@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Register.scss';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { registerSchema } from "./register.schema";
-import { register } from '../services/userService';
-import {Link, useHistory} from 'react-router-dom';
+import { me, register } from '../services/userService';
+import { Link, useHistory } from 'react-router-dom';
 
 function Register() {
     const history = useHistory();
@@ -17,6 +17,22 @@ function Register() {
             console.log(err);
         }
     }
+
+    useEffect(() => {
+        me()
+            .then(loggedUser => {
+                if (!isLoggedIn(loggedUser)) {
+                    return;
+                }
+                history.push('/');
+            })
+            .catch(err => console.log(err));
+    }, [history])
+
+    function isLoggedIn(user) {
+        return user.hasOwnProperty('_id');
+    }
+
     return (
         <div className="Register">
             <h2>Create an Instagram profile</h2>

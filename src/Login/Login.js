@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { loginScheme } from './loginScheme';
 import { login, me } from '../services/userService';
@@ -21,6 +21,21 @@ function Login() {
         } catch (e) {
             console.log(e);
         }
+    }
+
+    useEffect(() => {
+        me()
+            .then(loggedUser => {
+                if (!isLoggedIn(loggedUser)) {
+                    return;
+                }
+                history.push('/');
+            })
+            .catch(err => console.log(err));
+    }, [history])
+
+    function isLoggedIn(user) {
+        return user.hasOwnProperty('_id');
     }
 
     return (

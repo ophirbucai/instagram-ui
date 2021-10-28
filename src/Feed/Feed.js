@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { getFeed } from '../services/postService';
 import './Feed.scss';
 import Post from "../common/Post/Post";

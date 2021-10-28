@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './HeaderProfile.scss';
 import Avatar from '../../common/Avatar/Avatar';
-import {UserContext} from "../../App";
+import { UserContext } from "../../App";
 
 function HeaderProfile() {
     const { user } = useContext(UserContext);
