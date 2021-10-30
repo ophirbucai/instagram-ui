@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { postScheme } from './post.scheme';
 import { create } from '../services/postService';
 import { useHistory } from 'react-router-dom';
+import './PostCreate.scss';
 
 function PostCreate() {
     const history = useHistory();
@@ -15,18 +16,20 @@ function PostCreate() {
             console.log(err);
         }
     }
+
     return (
-        <div className="Register">
+        <div className="PostCreate">
             <Formik
                 initialValues={{ body: '', image: null }}
                 validationSchema={postScheme}
                 onSubmit={submit}>
-                {({ setFieldValue }) => (
+                {({ values, setFieldValue }) => (
                     <Form>
                         <div className="form-group">
-                            <input type="file" name="image" onChange={e => {
-                                setFieldValue('image', e.currentTarget.files[0]);
-                            }} />
+                              <input className="file" type="file" name="image" onChange={e => {
+                                  setFieldValue('image', e.currentTarget.files[0]);
+                              }} />
+                            <span>Drop the image here</span>
                             <div className="error">
                                 <ErrorMessage name="image" />
                             </div>
@@ -40,6 +43,9 @@ function PostCreate() {
                         <div className="submit">
                             <button type='submit'>Create Post</button>
                         </div>
+                        {values.image && (
+                            <img src={URL.createObjectURL(values.image)} alt="" width="500px" />
+                        )}
                     </Form>
                 )}
             </Formik>
