@@ -6,7 +6,7 @@ function PostDate({date}) {
         const yesterday = new Date(new Date().getTime() - (12 * 60 * 60 * 1000));
         const formattedDate = new Date(date)
         if (yesterday > formattedDate) {
-            return format(formattedDate, 'eeee, MMM dd yyyy, h:mm');
+            return format(formattedDate, 'eeee, MMM dd yyyy h:mm');
         } else {
             return formatDistanceToNow(formattedDate, {addSuffix: true});
         }

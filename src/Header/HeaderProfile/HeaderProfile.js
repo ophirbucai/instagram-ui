@@ -8,7 +8,7 @@ function HeaderProfile() {
 
     return (
         <div className="HeaderProfile">
-            <Avatar image="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" />
+            <Avatar size="md" username={user.username} />
             <span className="HeaderProfile__username">{ user.username }</span>
         </div>
     );

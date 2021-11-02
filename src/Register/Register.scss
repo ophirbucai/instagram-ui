@@ -50,15 +50,15 @@
 
   &:before {
     position: absolute;
-    left: -2.3em;
+    left: -2.7em;
     content: "!";
     display: inline-block;
     border-radius: 50%;
-    border: .10em solid $error;
-    width: 1.4em;
+    border: 1px solid $error;
+    width: 1.5em;
     text-align: center;
     color: $error;
-    font-weight: 400;
+    font-weight: 700;
   }
 }
 

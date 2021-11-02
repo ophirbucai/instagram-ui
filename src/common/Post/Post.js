@@ -6,11 +6,12 @@ import config from '../../config/index';
 import PostDate from './PostDate/PostDate';
 
 function Post({ data }) {
+    console.log(data);
     return (
         <article className="Post">
             <header>
                 <div className="user-group">
-                    <Avatar image="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" />
+                    <Avatar username={data.author.username} />
 
                     <Link to={'/profile/' + data.author.username}>
                         <span>{data.author.username}</span>

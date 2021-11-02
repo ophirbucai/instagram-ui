@@ -12,7 +12,7 @@ async function register(user) {
 }
 
 async function login({username, password}) {
-    const res = await fetch(config.apiUrl + '/login', {
+    const res = await fetch(config.apiUrl + '/sign-in', {
         method: 'POST',
         body: JSON.stringify({username, password}),
         headers: {
@@ -48,9 +48,21 @@ async function me() {
     return res.json();
 }
 
+async function search(q) {
+    const res = await fetch(config.apiUrl + '/search/user/' + q, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
+        }
+    });
+    return res.json();
+}
+
 export {
     register,
     login,
     me,
-    isAvailable
+    isAvailable,
+    search
 };

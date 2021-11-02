@@ -7,7 +7,8 @@ import Login from './Login/Login'
 import { me } from "./services/userService";
 import Feed from "./Feed/Feed";
 import PostCreate from "./PostCreate/PostCreate";
-export const UserContext = createContext();
+import Search from "./Search/Search";
+export const UserContext = createContext({});
 
 function App() {
     const history = useHistory();
@@ -17,7 +18,7 @@ function App() {
         me()
             .then(loggedUser => {
                 if (!isLoggedIn(loggedUser)) {
-                    history.push('/register');
+                    history.push('/sign-in');
                     return;
                 }
                 setUser(loggedUser);
@@ -34,6 +35,9 @@ function App() {
         <div className="App">
             { isLoggedIn(user) && <Header />}
             <Switch>
+                <Route path="/search">
+                    <Search />
+                </Route>
                 <Route path="/register">
                     <Register />
                 </Route>

@@ -1,0 +1,9 @@
+@import '../../style-variables';
+
+.SearchResult {
+  width: 300px;
+  border: 1px solid $dark;
+  background: $pure-white;
+  display: flex;
+  flex-direction: column;
+}
