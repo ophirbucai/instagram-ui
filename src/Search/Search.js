@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { search } from "../services/userService";
 import SearchResult from "./SearchResult/SearchResult";
+import './Search.scss';
 
 function Search() {
     const [query, setQuery] = useState('');
@@ -16,7 +17,7 @@ function Search() {
             let timeout = setTimeout(async () => {
                 await search(query)
                     .then(results => setResults(results))
-            }, 2000);
+            }, 300);
             return () => clearTimeout(timeout);
         }, [query]
     )
@@ -24,7 +25,7 @@ function Search() {
     return (
         <div className="Search">
             <h1>Search</h1>
-            <form>
+            <form onSubmit={e => e.preventDefault()}>
                 <input type="text" value={query} onChange={e => {setQuery(e.target.value)}} />
             </form>
             <div>

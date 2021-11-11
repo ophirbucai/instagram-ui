@@ -1,3 +1,19 @@
+@import '../style-variables';
+
 .Search {
   color: $pure-white;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  input {
+    padding: 0.5em 0.8em;
+    font-size: 1em;
+    width: 40vw;
+    outline: none;
+    border-radius: $corner;
+    font-family: inherit;
+    letter-spacing: inherit;
+    border: 1px solid $dark;
+    border-radius: $corner;
+  }
 }

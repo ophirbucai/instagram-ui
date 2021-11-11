@@ -48,9 +48,46 @@ async function me() {
     return res.json();
 }
 
+async function getUser(username) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        return {};
+    }
+    const res = await fetch(config.apiUrl + '/user/' + username, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    });
+    return res.json();
+}
+
 async function search(q) {
     const res = await fetch(config.apiUrl + '/search/user/' + q, {
         method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
+        }
+    });
+    return res.json();
+}
+
+async function follow(username) {
+    const res = await fetch(config.apiUrl + '/user/' + username + '/follow', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
+        }
+    });
+    return res.json();
+}
+
+async function unfollow(username) {
+    const res = await fetch(config.apiUrl + '/user/' + username + '/unfollow', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': localStorage.getItem('token')
@@ -63,6 +100,9 @@ export {
     register,
     login,
     me,
+    getUser,
     isAvailable,
-    search
+    search,
+    follow,
+    unfollow
 };

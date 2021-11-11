@@ -6,7 +6,6 @@ import { UserContext } from "../App";
 import { Link, useHistory } from 'react-router-dom';
 import './Login.scss';
 
-
 function Login() {
     const history = useHistory();
     const { setUser } = useContext(UserContext);

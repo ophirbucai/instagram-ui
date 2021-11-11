@@ -8,7 +8,7 @@ function Avatar({ username, size }) {
 
     return (
         <div className={`Avatar ${size || 'md'}`}>
-            <div dangerouslySetInnerHTML={{__html: createAvatar(style, {seed: username, background: '#ccc'})}}/>
+            <div dangerouslySetInnerHTML={{__html: createAvatar(style, {seed: username, background: '#ccc', mood: 'angry'})}}/>
         </div>
     );
 }

@@ -1,13 +1,14 @@
 import React from 'react';
 import Avatar from '../../common/Avatar/Avatar';
+import { Link } from 'react-router-dom';
+import './SearchResult.scss';
 
 function SearchResult({ user }) {
     return (
-        <div className="SearchResult">
-            <Avatar username={user.username} />
-            <div>{user.username}</div>
-        </div>
-
+        <Link to={`/profile/${user.username}`} className="SearchResult">
+            <Avatar username={user.username} size="lg" />
+            <span>{user.username}</span>
+        </Link>
     );
 }
 

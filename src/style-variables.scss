@@ -1,7 +1,26 @@
+$light-shadow: #b1c6c6;
+$light-bg: #f2f1f0;
+$light-accent: #0f0b20;
+$light-main: #2944f2;
+
+//dark theme
+$dark-shadow: #111111;
+$dark-bg: #0f0b20;
+$dark-accent: #0f0b20;
+$dark-main: #2944f2;
+
 $pure-white: #fefefe;
 $background: rgba(255, 255, 255, 96%);
 $dark: #2a2a2d;
-$shadow: #555;
+$shadow: #6e6e6f;
 $error: #f22929;
-$main: #2944f2;
-$corner: 0.6em;
+
+$corner: 5px;
+$sm: 20px;
+$md: 35px;
+$lg: 70px;
+$xl: 140px;
+$transition-faster: 40ms ease-in;
+$transition-fast: 65ms ease-in;
+$transition-slow: 90ms ease-in;
+$transition-slower: 105ms ease-in;

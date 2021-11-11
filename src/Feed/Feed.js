@@ -20,7 +20,7 @@ function Feed() {
 
     return (
         <div className="Feed">
-            {posts.map((post) => <Post data={post} />)}
+            {posts.map((post) => <Post data={post} key={post._id} />)}
         </div>
     );
 }

@@ -27,4 +27,8 @@
     z-index: 1;
     border-radius: 10px;
   }
+  button {
+    position: absolute;
+    z-index: 3;
+  }
 }

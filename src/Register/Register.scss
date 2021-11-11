@@ -32,7 +32,7 @@
     letter-spacing: inherit;
     outline: none;
     border: 1px solid $dark;
-    border-radius: $corner / 2;
+    border-radius: $corner; // divide by 2
   }
 }
 
@@ -64,7 +64,7 @@
 
 .submit button {
   width: 100%;
-  background: $main;
+  background: $dark-main;
   color: $pure-white;
   border: none;
   padding: 0.6em 0;

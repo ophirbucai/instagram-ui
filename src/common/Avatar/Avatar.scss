@@ -1,11 +1,29 @@
+@import '../../style-variables';
+
+
 .Avatar {
-  width: 35px;
-  height: 35px;
   border-radius: 50%;
   overflow: hidden;
   margin: 5px;
 
   img {
     width: 100%;
+  }
+
+  &.sm {
+    width: $sm;
+    height: $sm;
+  }
+  &.md {
+    width: $md;
+    height: $md;
+  }
+  &.lg {
+    width: $lg;
+    height: $lg;
+  }
+  &.xl {
+    width: $xl;
+    height: $xl;
   }
 }

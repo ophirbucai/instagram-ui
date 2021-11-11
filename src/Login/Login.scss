@@ -5,7 +5,7 @@
   max-width: 33vw;
   background: $background;
   padding: 0.8em 1.4em;
-  box-shadow: 0 0 2em $background;
+  box-shadow: 0 0 1em $light-shadow;
   min-height: 36%;
   min-width: 36%;
   border-radius: $corner;
@@ -20,6 +20,6 @@
     padding: 0.2em;
   }
   a:visited {
-    color: $main;
+    color: $dark-main;
   }
 }

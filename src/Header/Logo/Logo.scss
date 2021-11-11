@@ -1,7 +1,17 @@
+@import '../../style-variables';
+
 .Logo {
-  color: #ffffff;
+  color: $light-accent;
+
   font-size: 20px;
   padding: 15px;
   text-decoration: none;
   margin-right: auto;
+}
+
+
+body.Dark {
+  .Logo {
+    color: $pure-white;
+  }
 }

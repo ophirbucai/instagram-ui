@@ -3,3 +3,19 @@
 //  place-items: center;
 //  height: 100vh;
 //}
+
+//body {color: #333; background: #fff;}
+
+/* Set dark mode styles */
+//@media (prefers-color-scheme: dark) {
+//  body {color: #fff; background: #333;}
+//}
+
+body {
+  background: #f2f1f0;
+}
+
+
+body.Dark {
+  background: rgb(2, 22, 45);
+}

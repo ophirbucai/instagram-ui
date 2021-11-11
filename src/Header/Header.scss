@@ -1,9 +1,20 @@
+@import '../style-variables.scss';
+
 .Header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 60px;
   padding: 10px;
-  background: linear-gradient(#333333, #111111);
+  background: linear-gradient(#d0dddd, #fffff0);
   margin-bottom: 20px;
+  box-shadow: 0 5px 1em $light-shadow;
+}
+
+body.Dark {
+  .Header {
+    background: linear-gradient(#010b0b, #151514);
+    margin-bottom: 20px;
+    box-shadow: 0 5px 1em $dark-shadow;
+  }
 }
