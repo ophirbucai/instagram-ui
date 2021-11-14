@@ -2,8 +2,10 @@ import config from '../config/index';
 
 async function create(post) {
     const form = new FormData();
-    form.append('body', post.body);
+    form.append('description', post.description);
     form.append('image', post.image);
+    form.append('fileExtension', post.fileExtension);
+    console.log('form', form);
 
     const token = localStorage.getItem("token");
     const res = await fetch(config.apiUrl + '/post', {

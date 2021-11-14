@@ -10,7 +10,7 @@ function Feed() {
         const getPosts = async() => {
             try {
                 const posts = await getFeed();
-                setPosts(posts);
+                setPosts(posts.slice(0).reverse());
             } catch (err) {
                 console.log(err);
             }

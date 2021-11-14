@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Post.scss'
 import Avatar from '../Avatar/Avatar';
 import { Link } from 'react-router-dom';
@@ -8,32 +8,39 @@ import PostLike from './PostLike/PostLike';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from '@fortawesome/free-solid-svg-icons/faClock'
 
-function Post({ data }) {
+function Post({ data:post }) {
+    const [likesCount, setLikesCount] = useState(post.likes.length);
+    function likesCounter(operator) {
+        if (operator === '+') setLikesCount(likesCount => likesCount + 1);
+        if (operator === '-') setLikesCount(likesCount => likesCount - 1);
+    }
+
     return (
         <article className="Post">
             <header>
                 <div className="user-group">
-                    <Avatar username={data.author.username} />
+                    <Avatar username={post.author.username} />
 
-                    <Link to={'/profile/' + data.author.username}>
-                        <span>{data.author.username}</span>
+                    <Link to={'/profile/' + post.author.username}>
+                        <span>{post.author.username}</span>
                     </Link>
                 </div>
                 <div className="date">
                     <FontAwesomeIcon icon={faClock} size="sm" color="#0f0b20" />
-                    <PostDate date={data.createdAt} />
+                    <PostDate date={post.createdAt} />
                 </div>
             </header>
             <div className="image">
-                <Link to={'/post/' + data._id}>
-                    <img src={config.apiUrl + '/' + data.image} className="Post__image" alt="" />
+                <Link to={'/post/' + post._id}>
+                    <img src={config.apiUrl + '/' + post.image} className="Post__image" alt="" />
                 </Link>
             </div>
             <div>
-                <PostLike likes={data.likes} postId={data._id} />
+                <PostLike likesCounter={likesCounter} likes={post.likes} postId={post._id} />
+                <span>{likesCount} Likes</span>
             </div>
             <div className="content">
-                <h1 className="Post__description">{data.body}</h1>
+                <h1 className="Post__description">{post.body}</h1>
             </div>
         </article>
     );

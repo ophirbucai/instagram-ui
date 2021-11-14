@@ -1,28 +1,32 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { UserContext } from "../../../App";
 import { postLike, postUnlike } from '../../../services/postService';
 
-function PostLike({ postId, likes }) {
+function PostLike({ postId, likes, likesCounter }) {
     const { user } = useContext(UserContext);
-    const [likesCount, setLikesCount] = useState(likes.length);
     const [hasLiked, setHasLiked] = useState(likes.includes(user._id));
+    // const [likesCount, setLikesCount] = useState(likes.length);
+
+    useEffect(() => {
+        setHasLiked(likes.includes(user._id));
+    }, [user, likes]);
 
     function like() {
         setHasLiked(true);
-        setLikesCount(prev => prev + 1);
+        likesCounter("+")
         postLike(postId)
             .catch(() => {
                 setHasLiked(false);
-                setLikesCount(prev => prev - 1);
+                likesCounter("-")
             });
     }
     function unlike() {
         setHasLiked(false);
-        setLikesCount(prev => prev - 1);
+        likesCounter("-")
         postUnlike(postId)
             .catch(() => {
                 setHasLiked(true);
-                setLikesCount(prev => prev + 1);
+                likesCounter("+")
             });
     }
 
@@ -31,7 +35,6 @@ function PostLike({ postId, likes }) {
             {hasLiked ?
             <button onClick={unlike}>Unlike</button> :
             <button onClick={like}>Like</button>}
-            {likesCount} Likes
         </>
     );
 }
