@@ -32,7 +32,7 @@ export default function ImageEdit({ image, setFieldValue } ) {
         // console.log(cleanUrl);
         // setCroppedLiveUrl(cleanUrl);
 
-        let dataUrl = cropperRef.current.cropper.getCroppedCanvas().toDataURL("image/png");
+        let dataUrl = cropperRef.current.cropper.getCroppedCanvas().toDataURL();
         // const objectUrl = URL.createObjectURL(dataUrl);
         // console.log('objectUrl',objectUrl);
         // const blob = base64StringToBlob(dataUrl)

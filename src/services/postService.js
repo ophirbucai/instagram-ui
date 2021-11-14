@@ -1,10 +1,12 @@
 import config from '../config/index';
 
+
 async function create(post) {
     const form = new FormData();
+    const sentBlob = await fetch(post.image);
+    const image = await sentBlob.blob();
     form.append('description', post.description);
-    form.append('image', post.image);
-    form.append('fileExtension', post.fileExtension);
+    form.append('image', image);
     console.log('form', form);
 
     const token = localStorage.getItem("token");

@@ -9,13 +9,9 @@ import PostCreateDropzone from "./PostCreateDropzone/PostCreateDropzone";
 
 function PostCreate() {
     const history = useHistory();
-    const [fileExtension, setFileExtension] = useState('');
-
     const submit = async (values) => {
         try {
-            const data = {...values, fileExtension };
-            console.log('data', data);
-            await create(data)
+            await create(values)
             history.push('/');
         } catch (err) {
             console.log(err);
@@ -31,10 +27,7 @@ function PostCreate() {
                 {({ values, setFieldValue }) => (
                     <Form>
                         <div className="form-group">
-                            <PostCreateDropzone
-                                setFieldValue={setFieldValue}
-                                setFileExtension={setFileExtension}
-                            />
+                            <PostCreateDropzone setFieldValue={setFieldValue} />
                             <div className="error">
                                 <ErrorMessage name="image" />
                             </div>

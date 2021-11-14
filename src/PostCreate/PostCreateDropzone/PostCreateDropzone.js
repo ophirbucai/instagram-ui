@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useDropzone } from "react-dropzone";
 
-export default function PostCreateDropzone({ setFieldValue, setFileExtension }) {
+export default function PostCreateDropzone({ setFieldValue }) {
 
     const baseStyle = {
         flex: 1,
@@ -27,7 +27,6 @@ export default function PostCreateDropzone({ setFieldValue, setFileExtension }) 
     } = useDropzone({ accept: "image/*",
         onDrop: (acceptedFiles) => {
             setFieldValue('image', URL.createObjectURL(acceptedFiles[0]));
-            setFileExtension(acceptedFiles[0].name.split('.').pop());
         }});
 
     const acceptStyle = {
