@@ -9,6 +9,7 @@ import Feed from "./Feed/Feed";
 import PostCreate from "./PostCreate/PostCreate";
 import Search from "./Search/Search";
 import Profile from "./Profile/Profile";
+import PostPage from "./PostPage/PostPage";
 export const UserContext = createContext({});
 export const ThemeContext = createContext({});
 
@@ -59,6 +60,7 @@ function App() {
                     <Route path="/register"><Register /></Route>
                     <Route path="/sign-in"><Login /></Route>
                     <Route path="/post/create"><PostCreate /></Route>
+                    <Route path="/post/:id"><PostPage /></Route>
                     <Route path="/profile/:username"><Profile /></Route>
                     <Route path="/"><Feed /></Route>
                 </Switch>

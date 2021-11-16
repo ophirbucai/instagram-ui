@@ -6,14 +6,14 @@
   align-items: center;
   height: 60px;
   padding: 10px;
-  background: linear-gradient(#d0dddd, #fffff0);
+  background: $light-gradient;
   margin-bottom: 20px;
   box-shadow: 0 5px 1em $light-shadow;
 }
 
 body.Dark {
   .Header {
-    background: linear-gradient(#010b0b, #151514);
+    background: $dark-gradient;
     margin-bottom: 20px;
     box-shadow: 0 5px 1em $dark-shadow;
   }

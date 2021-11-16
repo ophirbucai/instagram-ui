@@ -75,25 +75,23 @@ async function search(q) {
 }
 
 async function follow(username) {
-    const res = await fetch(config.apiUrl + '/user/' + username + '/follow', {
+    return fetch(config.apiUrl + '/user/' + username + '/follow', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': localStorage.getItem('token')
         }
     });
-    return res.json();
 }
 
 async function unfollow(username) {
-    const res = await fetch(config.apiUrl + '/user/' + username + '/unfollow', {
+    return fetch(config.apiUrl + '/user/' + username + '/unfollow', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': localStorage.getItem('token')
         }
     });
-    return res.json();
 }
 
 export {
