@@ -9,6 +9,7 @@ export default function Profile() {
     const [posts, setPosts] = useState([]);
     console.log(posts);
     const { username } = useParams();
+
     useEffect(() => {
         async function initUser() {
             const posts = await getPosts(username);

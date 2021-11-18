@@ -1,14 +1,23 @@
 @import '../../style-variables';
-
+//
 .ImageEdit {
-  position: absolute;
-  .controller {
-    position: fixed;
-    bottom: 0;
+    position: relative;
+    width: 100%;
+    height: 400px;
+  .finished {
+    background: $pure-white;
+    position: absolute;
     left: 0;
     right: 0;
-    height: 20%;
+    top: -50;
   }
+  //.controller {
+  //  position: fixed;
+  //  bottom: 0;
+  //  left: 0;
+  //  right: 0;
+  //  height: 20%;
+  //}
 }
 //  position: absolute;
 //  top: 0;

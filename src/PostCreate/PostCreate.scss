@@ -1,7 +1,44 @@
 @import '../style-variables';
 
 .PostCreate {
-  position: relative;
+  margin: 0 auto;
+  max-width: 400px;
+  .form-group {
+    width: 100%;
+    label {
+      margin: 0.4em 0;
+      text-transform: capitalize;
+    }
+    input {
+      width: 100%;
+      background: #fafafa;
+      border: 0.1rem solid #dbdbdb;
+      font-size: 1em;
+      padding: 0.6em 1em;
+      font-family: inherit;
+      text-transform: lowercase;
+      letter-spacing: inherit;
+      outline: none;
+      border-radius: $corner;
+      margin-bottom: 10px;
+    }
+  }
+
+  .submit button {
+    width: 100%;
+    background: $dark-main;
+    color: $pure-white;
+    border: none;
+    padding: 0.6em 0;
+    font-family: inherit;
+    font-size: 1.1em;
+    font-weight: 900;
+    letter-spacing: inherit;
+    border-radius: $corner;
+    &:active {
+      opacity: 0.85;
+    }
+  }
 }
 
 //  margin: 35vh auto;

@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import './Post.scss'
 import Avatar from '../Avatar/Avatar';
 import { Link } from 'react-router-dom';
-import config from '../../config/index';
+// import config from '../../config';
 import PostDate from './PostDate/PostDate';
 import PostLike from './PostLike/PostLike';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from '@fortawesome/free-solid-svg-icons/faClock'
+import Carousel from "../Carousel/Carousel";
 
-function Post({ data:post }) {
+export default function Post({ data:post }) {
     const [likesCount, setLikesCount] = useState(post.likes.length);
+    const [commentValue, setCommentValue] = useState('');
+    const submitComment = useCallback((e) => {
+        e.preventDefault();
+        console.log(commentValue);
+    }, [commentValue]);
+
     function likesCounter(operator) {
         if (operator === '+') setLikesCount(likesCount => likesCount + 1);
         if (operator === '-') setLikesCount(likesCount => likesCount - 1);
@@ -19,7 +26,7 @@ function Post({ data:post }) {
         <article className="Post">
             <header>
                 <div className="user-group">
-                    <Avatar username={post.author.username} />
+                    <Avatar username={post.author.username} size="md" />
 
                     <Link to={'/profile/' + post.author.username}>
                         <span>{post.author.username}</span>
@@ -30,20 +37,34 @@ function Post({ data:post }) {
                     <PostDate date={post.createdAt} />
                 </div>
             </header>
-            <div className="image">
-                <Link to={'/post/' + post._id}>
-                    <img src={config.apiUrl + '/' + post.image} className="Post__image" alt="" />
-                </Link>
+            <div className="images">
+                <Carousel images={post.images} />
             </div>
-            <div>
+            <div className="likes">
                 <PostLike likesCounter={likesCounter} likes={post.likes} postId={post._id} />
                 <span>{likesCount} Likes</span>
             </div>
             <div className="content">
                 <h1 className="Post__description">{post.body}</h1>
             </div>
+            <div className="comments">
+                {post.comments && post.comments.map((comment) => (
+                    <div>{comment}</div>
+                ))}
+                <form onSubmit={submitComment}>
+                    <input type="text" onChange={(e) => setCommentValue(e.target.value)} value={commentValue} />
+                    <input type="submit" />
+                </form>
+            </div>
         </article>
     );
 }
 
-export default Post;
+// <article className="PostPage">
+//     <div>
+//         <Avatar username={data.author.username} size="md" />
+//     </div>
+//     <div className="images">
+//
+//     </div>
+// </article>

@@ -1,4 +1,4 @@
-import config from '../config/index';
+import config from '../config';
 
 async function register(user) {
     const res = await fetch(config.apiUrl + '/user', {

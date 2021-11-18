@@ -17,7 +17,7 @@ function Feed() {
         }
         getPosts();
     }, [])
-
+    console.log(posts)
     return (
         <div className="Feed">
             {posts.map((post) => <Post data={post} key={post._id} />)}

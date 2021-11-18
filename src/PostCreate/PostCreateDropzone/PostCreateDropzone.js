@@ -1,13 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext, useCallback } from 'react';
 import { useDropzone } from "react-dropzone";
+import { PostCreateContext } from '../PostCreate';
+import './PostCreateDropzone.scss';
 
-export default function PostCreateDropzone({ setFieldValue }) {
-
+export default function PostCreateDropzone() {
+    const { images, setImages } = useContext(PostCreateContext);
     const baseStyle = {
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
         padding: "20px",
         borderWidth: 2,
         borderRadius: 2,
@@ -19,15 +17,29 @@ export default function PostCreateDropzone({ setFieldValue }) {
         transition: "border .24s ease-in-out"
     };
 
+    const onDrop = useCallback(async (acceptedFiles) => {
+        const acceptedFilesPromises = acceptedFiles.map((file) => {
+            return new Promise((resolve) => {
+                resolve(URL.createObjectURL(file));
+            });
+        });
+        const filesUrls = await Promise.all(acceptedFilesPromises);
+        const arrayOfImages = [...images, ...filesUrls];
+        console.log(arrayOfImages);
+        const slicedArray = arrayOfImages.slice(0, 5);
+        setImages(slicedArray);
+    }, [setImages, images]);
+
     const {
         getRootProps,
         getInputProps,
         isDragAccept,
         isDragReject
-    } = useDropzone({ accept: "image/*",
-        onDrop: (acceptedFiles) => {
-            setFieldValue('image', URL.createObjectURL(acceptedFiles[0]));
-        }});
+    } = useDropzone({
+        accept: "image/*",
+        onDrop,
+        maxFiles: 5
+    });
 
     const acceptStyle = {
         borderColor: "#afeeee",
@@ -49,13 +61,12 @@ export default function PostCreateDropzone({ setFieldValue }) {
         [isDragReject, isDragAccept]
     )
 
-
     return (
         <section className="PostCreateDropzone">
             <div {...getRootProps({ className: "dropzone", style })}>
                 <input {...getInputProps()} />
                 <p>
-                    Drag and drop image here or click to select a file.
+                    Drag and drop images here or click to select a file.
                 </p>
             </div>
         </section>

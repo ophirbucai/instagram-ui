@@ -1,56 +1,76 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { postScheme } from './post.scheme';
+import React, { createContext, useState } from 'react';
 import { create } from '../services/postService';
 import ImageEdit from './ImageEdit/ImageEdit';
 import { useHistory } from 'react-router-dom';
 import './PostCreate.scss';
 import PostCreateDropzone from "./PostCreateDropzone/PostCreateDropzone";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+export const PostCreateContext = createContext([]);
 
 function PostCreate() {
+    const [images, setImages] = useState([]);
+    const [description, setDescription] = useState('');
+    const [aspectRatio, setAspectRatio] = useState(4 / 3)
+    const aspects = [1 / 1, 4 / 3, 16 / 9];
+    function getAspectLabel(aspect) {
+        if (aspect === 4 / 3) {
+            return '4 / 3'
+        } else if (aspect === 16 / 9) {
+            return '16 / 9'
+        } else {
+            return '1 / 1';
+        }
+    }
     const history = useHistory();
-    const submit = async (values) => {
+    const submit = async (e) => {
         try {
-            await create(values)
+            const formToSubmit = {
+                description,
+                images
+            }
+            await create(formToSubmit)
             history.push('/');
         } catch (err) {
             console.log(err);
         }
     }
-    return (
+    const settings = {
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
 
-        <div className="PostCreate">
-            <Formik
-                initialValues={{ description: '', image: null }}
-                validationSchema={postScheme}
-                onSubmit={submit}>
-                {({ values, setFieldValue }) => (
-                    <Form>
-                        <div className="form-group">
-                            <PostCreateDropzone setFieldValue={setFieldValue} />
-                            <div className="error">
-                                <ErrorMessage name="image" />
-                            </div>
-                        </div>
-                        {values.image && <div className="form-group">
-                            <Field id="description" name="description" placeholder="Write a post"/>
-                            <div className="error">
-                                <ErrorMessage name="description"/>
-                            </div>
-                        </div>}
-                        <div className="submit">
-                            <button type='submit'>Create Post</button>
-                        </div>
-                        {values.image && (
-                            <ImageEdit
-                                image={values.image}
-                                setFieldValue={setFieldValue}
-                            />
-                        )}
-                    </Form>
-                )}
-            </Formik>
-        </div>
+    return (
+        <PostCreateContext.Provider value={{ images, setImages }}>
+            <div className="PostCreate">
+                <form onSubmit={submit}>
+                    <div className='form-group'>
+                        {images.length === 0 && <PostCreateDropzone/>}
+                        {images && <Slider {...settings}>
+                            {images && images.map((image, i) => (
+                                <ImageEdit image={image} index={i} aspectRatio={aspectRatio} />
+                            ))}
+                        </Slider>}
+                    </div>
+                    {images.length > 0 && <div className="controller">
+                        <label htmlFor="aspect">Select an Aspect Ratio:</label>
+                        <select name="aspect" id="aspect" onChange={(e) => setAspectRatio(aspects[e.target.selectedIndex])}>
+                            {aspects.map((aspect, i) => <option key={i} name="aspect" id="aspect">{getAspectLabel(aspect)}</option>)}
+                        </select>
+                    </div>}
+                    <div className='form-group'>
+                        <input className="description" name="description" placeholder="Write a post" onChange={(e) => setDescription(e.target.value)} />
+                    </div>
+                    <div className="submit">
+                        <button type='submit'>Create Post</button>
+                    </div>
+                </form>
+            </div>
+        </PostCreateContext.Provider>
     );
 }
 

@@ -1,22 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './ProfileGallery.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import config from '../../config/index';
+import config from '../../config';
 
 export default function ProfileGallery({ items }) {
     return (
         <div className="ProfileGallery">
             {items.map(item => (
-                <div className="item" key={item._id}>
+                <Link to={'/post/' + item._id} className="item" key={item._id}>
                     <img className="image" src={config.apiUrl + '/' + item.image} alt={item.description} />
                     <div className="item-info">
                         <ul>
-                            <li className="likes"><span className="visually-hidden">Likes: </span><FontAwesomeIcon icon={faHeart} />{item.likes.length}</li>
+                            <li className="likes">
+                                <span className="visually-hidden">Likes: </span>
+                                <FontAwesomeIcon icon={faHeart} />{item.likes.length}
+                            </li>
                             {/*<li className="comments"><span>Likes:</span><FontAwesomeIcon icon={faCommentDots} /></li>*/}
                         </ul>
                     </div>
-                </div>
+                </Link>
             ))}
         </div>
     );

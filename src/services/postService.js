@@ -1,30 +1,32 @@
-import config from '../config/index';
+import config from '../config';
 
 
 async function create(post) {
     const form = new FormData();
-    const sentBlob = await fetch(post.image);
-    const image = await sentBlob.blob();
-    form.append('description', post.description);
-    form.append('image', image);
-    console.log('form', form);
-
-    const token = localStorage.getItem("token");
-    const res = await fetch(config.apiUrl + '/post', {
-        method: 'POST',
-        body: form,
-        headers: {
-            'Authorization': token
-        }
+    if (!post.images) return;
+    const imagesPromises = post.images.map((image) => {
+        return new Promise(async (resolve) => {
+            await fetch(image).then(res => resolve(res.blob()));
+        });
     });
-    return res.json();
+    await Promise.all(imagesPromises).then(async (blobs) => {
+        form.append('description', post.description);
+        form.append('images', blobs);
+        const res = await fetch(config.apiUrl + '/post', {
+            method: 'POST',
+            body: form,
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        });
+        return res.json();
+    });
 }
 
 async function getFeed() {
-    const token = localStorage.getItem("token");
     const res = await fetch(config.apiUrl + '/post', {
         headers: {
-            'Authorization': token
+            'Authorization': localStorage.getItem("token")
         }
     });
     return res.json();
@@ -33,7 +35,7 @@ async function getFeed() {
 async function getPosts(username) {
     const token = localStorage.getItem("token");
     if(!token) return [];
-    const res = await fetch(config.apiUrl + '/user/post/' + username, {
+    const res = await fetch(config.apiUrl + '/user/' + username + '/post', {
         method: 'GET',
         headers: {
             'Authorization': token
