@@ -4,23 +4,25 @@ import './ImageEdit.scss';
 import getCroppedImg from './cropImage'
 import Cropper from "react-easy-crop";
 
-export default function ImageEdit({ image, index, aspectRatio }) {
+export default function ImageEdit({ displayedImage, index, aspectRatio }) {
     const { images, setImages } = useContext(PostCreateContext);
     const [crop, setCrop] = useState({ x: 0, y: 0 })
     const [zoom, setZoom] = useState(1);
-    const [croppedAreaPixels, setCroppedAreaPixels] = useState({  });
+    const [croppedAreaPixels, setCroppedAreaPixels] = useState({});
     const cropComplete = useCallback(async (e) => {
         e.preventDefault();
+        console.log('displayed', displayedImage)
+        console.log('images1', images);
         const croppedImage = await getCroppedImg(
-            image,
+            displayedImage,
             croppedAreaPixels
         )
         const uploadedImages = images;
         uploadedImages[index] = croppedImage;
         setImages(uploadedImages);
-    }, [croppedAreaPixels, image, images, index, setImages]);
+        console.log('images2', uploadedImages);
+    }, [croppedAreaPixels, displayedImage, images, index, setImages]);
     const onCropComplete = useCallback(async (croppedArea, croppedAreaPixels) => {
-        console.log(croppedAreaPixels);
         setCroppedAreaPixels(croppedAreaPixels);
     }, []);
 
@@ -28,7 +30,7 @@ export default function ImageEdit({ image, index, aspectRatio }) {
         <div className="ImageEdit">
             <div>
                 <div className="preview">
-                    <Cropper image={image}
+                    <Cropper image={displayedImage}
                              crop={crop}
                              zoom={zoom}
                              aspect={aspectRatio}

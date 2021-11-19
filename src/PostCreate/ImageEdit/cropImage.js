@@ -47,5 +47,5 @@ export default async function getCroppedImg(imageSrc, pixelCrop) {
         Math.round(0 - safeArea / 2 + image.width * 0.5 - pixelCrop.x),
         Math.round(0 - safeArea / 2 + image.height * 0.5 - pixelCrop.y)
     )
-    return canvas.toDataURL('image/jpeg')
+    return canvas.toDataURL('image/jpeg');
 }

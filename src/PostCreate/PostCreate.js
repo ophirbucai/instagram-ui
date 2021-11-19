@@ -11,9 +11,10 @@ export const PostCreateContext = createContext([]);
 
 function PostCreate() {
     const [images, setImages] = useState([]);
+    const [displayedImages, setDisplayedImages] = useState([]);
     const [description, setDescription] = useState('');
     const [aspectRatio, setAspectRatio] = useState(4 / 3)
-    const aspects = [1 / 1, 4 / 3, 16 / 9];
+    const aspects = [4 / 3, 16 / 9, 1 / 1];
     function getAspectLabel(aspect) {
         if (aspect === 4 / 3) {
             return '4 / 3'
@@ -25,18 +26,20 @@ function PostCreate() {
     }
     const history = useHistory();
     const submit = async (e) => {
+        e.preventDefault();
         try {
             const formToSubmit = {
                 description,
                 images
             }
-            await create(formToSubmit)
-            history.push('/');
+            await create(formToSubmit);
+            // history.push('/');
         } catch (err) {
             console.log(err);
         }
     }
     const settings = {
+        draggable: false,
         dots: false,
         infinite: false,
         speed: 500,
@@ -49,10 +52,10 @@ function PostCreate() {
             <div className="PostCreate">
                 <form onSubmit={submit}>
                     <div className='form-group'>
-                        {images.length === 0 && <PostCreateDropzone/>}
+                        {images.length === 0 && <PostCreateDropzone setDisplayedImages={setDisplayedImages} />}
                         {images && <Slider {...settings}>
-                            {images && images.map((image, i) => (
-                                <ImageEdit image={image} index={i} aspectRatio={aspectRatio} />
+                            {displayedImages && displayedImages.map((image, i) => (
+                                <ImageEdit displayedImage={image} index={i} aspectRatio={aspectRatio} />
                             ))}
                         </Slider>}
                     </div>

@@ -4,6 +4,7 @@ import './Carousel.scss';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import './Carousel.scss';
 
 function Carousel({ images }) {
     const settings = {
@@ -14,7 +15,7 @@ function Carousel({ images }) {
         slidesToScroll: 1
     };
     return (
-        <Slider className="Carousel" as="ol" {...settings}>
+        <Slider className="Carousel" {...settings}>
             {images.map((image, i) => (
                 <div key={i}>
                     <img src={config.apiUrl + '/' + image} alt=""/>

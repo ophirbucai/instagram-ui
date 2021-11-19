@@ -3,7 +3,7 @@ import { useDropzone } from "react-dropzone";
 import { PostCreateContext } from '../PostCreate';
 import './PostCreateDropzone.scss';
 
-export default function PostCreateDropzone() {
+export default function PostCreateDropzone({ setDisplayedImages }) {
     const { images, setImages } = useContext(PostCreateContext);
     const baseStyle = {
         padding: "20px",
@@ -18,17 +18,21 @@ export default function PostCreateDropzone() {
     };
 
     const onDrop = useCallback(async (acceptedFiles) => {
+        // setImages(acceptedFiles);
         const acceptedFilesPromises = acceptedFiles.map((file) => {
             return new Promise((resolve) => {
-                resolve(URL.createObjectURL(file));
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                // reader.onerror = error => reject(error);
             });
         });
         const filesUrls = await Promise.all(acceptedFilesPromises);
         const arrayOfImages = [...images, ...filesUrls];
-        console.log(arrayOfImages);
         const slicedArray = arrayOfImages.slice(0, 5);
         setImages(slicedArray);
-    }, [setImages, images]);
+        setDisplayedImages(slicedArray);
+    }, [images, setImages, setDisplayedImages]);
 
     const {
         getRootProps,
