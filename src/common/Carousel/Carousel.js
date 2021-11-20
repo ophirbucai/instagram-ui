@@ -12,10 +12,11 @@ function Carousel({ images }) {
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        className: "Carousel"
     };
     return (
-        <Slider className="Carousel" {...settings}>
+        <Slider {...settings}>
             {images.map((image, i) => (
                 <div key={i}>
                     <img src={config.apiUrl + '/' + image} alt=""/>

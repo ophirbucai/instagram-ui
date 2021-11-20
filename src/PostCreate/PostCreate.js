@@ -33,7 +33,7 @@ function PostCreate() {
                 images
             }
             await create(formToSubmit);
-            // history.push('/');
+            history.push('/');
         } catch (err) {
             console.log(err);
         }
@@ -53,9 +53,9 @@ function PostCreate() {
                 <form onSubmit={submit}>
                     <div className='form-group'>
                         {images.length === 0 && <PostCreateDropzone setDisplayedImages={setDisplayedImages} />}
-                        {images && <Slider {...settings}>
+                        {images.length > 0 && <Slider {...settings}>
                             {displayedImages && displayedImages.map((image, i) => (
-                                <ImageEdit displayedImage={image} index={i} aspectRatio={aspectRatio} />
+                                <ImageEdit key={i} displayedImage={image} index={i} aspectRatio={aspectRatio} />
                             ))}
                         </Slider>}
                     </div>

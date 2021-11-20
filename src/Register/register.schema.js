@@ -5,7 +5,7 @@ export const registerSchema = yup.object().shape({
     username: yup.string()
         .min(3)
         .max(16)
-        .matches(/^[aA0-zZ9\s_]+\.?[aA0-zZ9\s_]+$/, 'must only contain letters, numbers, underscores and can not begin or end with a period')
+        .matches('^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:.(?!.))){0,28}(?:[A-Za-z0-9_]))?)$', 'must only contain letters, numbers, underscores and can not begin or end with a period')
         .test('availability', 'this username is not available, please choose another one!', async (username) => await isAvailable(username))
         .required(),
     email: yup.string()

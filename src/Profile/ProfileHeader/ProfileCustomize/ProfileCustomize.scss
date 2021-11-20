@@ -1,0 +1,23 @@
+@import '../../../style-variables.scss';
+
+.ProfileCustomize {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 300px;
+    background: $pure-white;
+    display: inline-block;
+    // font-family: inherit;
+    // letter-spacing: inherit;
+    line-height: 1.8;
+    font-size: 1rem;
+    color: $dark;
+    border: 0.1rem solid #dbdbdb;
+    border-radius: $corner;
+    padding: 4rem 2.4rem;
+    margin: 2rem;
+    background: $pure-white;
+    cursor: pointer;
+    box-shadow: 0 0.5rem 2rem $dark-accent;
+    z-index: 3;
+}

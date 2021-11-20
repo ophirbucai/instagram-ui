@@ -10,13 +10,10 @@ async function create(post) {
     const imagesPromises = post.images.map(async (image) => {
         const cleanBase64 = image.split(';base64,').pop();
         return base64StringToBlob(cleanBase64, 'image/jpeg');
-        // console.log(cleanBase64);
-        // const sentBlob = await fetch(cleanBase64);
-        // return await sentBlob.blob();
     });
     Promise.all(imagesPromises).then(async (blobs) => {
         console.log(blobs);
-        const files = blobs.map((blob, i) => {
+        blobs.forEach((blob, i) => {
             const imageFile = new File([blob], `image${i}`, {type: 'image/jpeg'})
             console.log(`imageFile`, imageFile);
             form.append('images', imageFile)

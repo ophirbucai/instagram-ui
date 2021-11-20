@@ -15,7 +15,7 @@ function Avatar({ username, size }) {
 
 Avatar.propTypes = {
     user: PropTypes.string,
-    size: PropTypes.oneOf(['sm', 'md', 'lg'])
+    size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl'])
 }
 
 export default Avatar;

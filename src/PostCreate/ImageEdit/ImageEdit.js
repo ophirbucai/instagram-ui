@@ -11,8 +11,6 @@ export default function ImageEdit({ displayedImage, index, aspectRatio }) {
     const [croppedAreaPixels, setCroppedAreaPixels] = useState({});
     const cropComplete = useCallback(async (e) => {
         e.preventDefault();
-        console.log('displayed', displayedImage)
-        console.log('images1', images);
         const croppedImage = await getCroppedImg(
             displayedImage,
             croppedAreaPixels
@@ -22,9 +20,10 @@ export default function ImageEdit({ displayedImage, index, aspectRatio }) {
         setImages(uploadedImages);
         console.log('images2', uploadedImages);
     }, [croppedAreaPixels, displayedImage, images, index, setImages]);
-    const onCropComplete = useCallback(async (croppedArea, croppedAreaPixels) => {
+    const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
         setCroppedAreaPixels(croppedAreaPixels);
     }, []);
+    console.log(displayedImage);
 
     return (
         <div className="ImageEdit">
