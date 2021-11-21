@@ -19,13 +19,14 @@ import "./ProfileHeader.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { isAvailable } from "../../services/userService";
-// import ProfileCustomize from './ProfileCustomize/ProfileCustomize';
+import ProfileCustomize from "./ProfileCustomize/ProfileCustomize";
 
 function ProfileHeader({ username, postsCount }) {
   const { user: me, setUser: setMe } = useContext(UserContext);
   const [user, setUser] = useState({});
   const [followersCount, setFollowersCount] = useState(null);
   const [customizeShown, setCustomizeShown] = useState(false);
+  const [customAvatarStyle, setCustomAvatarStyle] = useState(user.customStyle);
 
   const isFollowing = useMemo(() => {
     return me?.following?.includes(user._id);
@@ -41,7 +42,6 @@ function ProfileHeader({ username, postsCount }) {
       })
       .catch(() => setFollowersCount((prev) => prev - 1));
   }, [setMe, username]);
-
   const handleUnfollow = useCallback(() => {
     unfollow(username)
       .then(() => {
@@ -88,7 +88,14 @@ function ProfileHeader({ username, postsCount }) {
         onSubmit={() => console.log("hi")}>
         <Form>
           <div className="image">
-            <Avatar username={user.username} size="xl" />
+            <Avatar
+              username={user.username}
+              size="xl"
+              customStyle={customAvatarStyle}
+            />
+            {customizeShown && (
+              <ProfileCustomize setCustomAvatarStyle={setCustomAvatarStyle} />
+            )}
           </div>
           <div className="settings">
             {customizeShown ? (
@@ -129,7 +136,7 @@ function ProfileHeader({ username, postsCount }) {
               )}
             </div>
           </div>
-          {/* {customizeShown && <ProfileCustomize setShown={setCustomizeShown} />} */}
+
           <div className="stats">
             <ul>
               <li>

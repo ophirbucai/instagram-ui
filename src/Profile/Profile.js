@@ -7,7 +7,6 @@ import ProfileGallery from "./ProfileGallery/ProfileGallery";
 
 export default function Profile() {
   const [posts, setPosts] = useState([]);
-  console.log(posts);
   const { username } = useParams();
 
   useEffect(() => {

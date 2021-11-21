@@ -120,10 +120,13 @@ body.Dark {
   .ProfileHeader {
     display: flex;
     align-items: center;
-    .Avatar {
-      height: 108px;
-      width: 108px;
     }
+    .image {
+      position: relative;
+      .Avatar {
+        height: 108px;
+        width: 108px;
+      }
     .settings {
       font-size: 0.75rem;
       .button-container button {

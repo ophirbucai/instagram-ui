@@ -1,23 +1,69 @@
 @import '../../../style-variables.scss';
 
 .ProfileCustomize {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 300px;
+    position: absolute;
+    right: 400px;
+    top: 80px;
+    width: 280px;
+    height: 300px;
     background: $pure-white;
     display: inline-block;
-    // font-family: inherit;
-    // letter-spacing: inherit;
-    line-height: 1.8;
+    // line-height: 1.8;
     font-size: 1rem;
     color: $dark;
     border: 0.1rem solid #dbdbdb;
     border-radius: $corner;
-    padding: 4rem 2.4rem;
+    padding: 1rem 2.4rem;
     margin: 2rem;
     background: $pure-white;
     cursor: pointer;
     box-shadow: 0 0.5rem 2rem $dark-accent;
     z-index: 3;
+    header {
+        h1 {
+            font-size: 1.3rem;
+            text-align: center;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px dotted $light-accent;
+            user-select: none;
+        }
+    }
+    .select-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row-reverse;
+        margin-bottom: 8px;     
+        .arrow {
+            transition: color $transition-slow;
+            width: 20px;
+            height: 20px;
+            color: $light-color;
+        }   
+        .arrow:hover {
+            color: $light-main;
+        }
+        select {
+            outline: none;
+            border: none;
+            font-family: inherit;
+            font-size: 1.2rem;
+            text-align: center;
+            letter-spacing: inherit;
+            appearance: none;
+            border-radius: $corner-big;
+            user-select: none;
+            width: 140px;
+            padding: 2px 0;
+            transition: background-color $transition-slow;
+            cursor: pointer;
+            
+            &:hover {
+                color: $light-bg;
+                background-color: $light-main;
+                
+            }
+        }
+    }
 }
