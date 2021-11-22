@@ -3,6 +3,19 @@
 .PostCreate {
   margin: 200px auto 0;
   max-width: 400px;
+  background: $background;
+  border-radius: $corner-big;
+  width: 65vw;
+  padding: 2rem 2.5rem;
+  header {
+    h1 {
+      font-size: 1.3rem;
+      text-align: center;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      user-select: none;
+  }
+  }
   .form-group {
     width: 100%;
     label {

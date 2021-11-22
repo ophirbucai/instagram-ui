@@ -49,8 +49,12 @@ function PostCreate() {
   return (
     <PostCreateContext.Provider value={{ images, setImages }}>
       <div className="PostCreate">
+        <header>
+          <h1>Post Create</h1>
+        </header>
         <form onSubmit={submit}>
           <div className="form-group">
+            PostCreateDropzone
             {images.length === 0 && (
               <PostCreateDropzone setDisplayedImages={setDisplayedImages} />
             )}

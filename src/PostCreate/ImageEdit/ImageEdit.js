@@ -48,6 +48,7 @@ export default function ImageEdit({ displayedImage, index, aspectRatio }) {
             onCropChange={setCrop}
             onCropComplete={onCropComplete}
             onZoomChange={setZoom}
+            objectFit={true}
             classes={{
               mediaClassName: "crop-media",
             }}

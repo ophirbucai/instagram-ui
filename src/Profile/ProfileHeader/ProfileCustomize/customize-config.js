@@ -83,11 +83,23 @@ const faceStyle = [
 ];
 
 const skinColor = [
-  "variant01",
-  "variant02",
-  "variant03",
-  "variant04",
-  "variant05",
+  "#ffe6cc",
+  "#ffd9b3",
+  "#ffcc99",
+  "#efdcc3",
+  "#e5cfb7",
+  "#ffbf80",
+  "#e2bd8a",
+  "#e0bf85",
+  "#c29d7d",
+  "#bd9565",
+  "#C68642",
+  "#8D5524",
+  "#994d00",
+  "#804000",
+  "#663300",
+  "#4d2600",
+  "#331a00",
 ];
 
 const hairColor = [
@@ -95,12 +107,54 @@ const hairColor = [
   "variant02",
   "variant03",
   "variant04",
-  "variant05",
-  "variant06",
-  "variant07",
-  "variant08",
-  "variant09",
-  "variant10",
+  "#3D2F2F",
+  "#BC8F8F",
+  "#23120B",
+  "#CC9966",
+  "#5A3825",
+  "#3D2314",
 ];
 
-export { headStyle, faceStyle, skinColor, hairColor };
+const accessories = [
+  "eyepatch",
+  "glasses",
+  "glasses2",
+  "glasses3",
+  "glasses4",
+  "glasses5",
+  "sunglasses",
+  "sunglasses2",
+  "noAccessory",
+];
+
+const facialHair = [
+  "chin",
+  "full",
+  "full2",
+  "full3",
+  "full4",
+  "goatee1",
+  "goatee2",
+  "moustache1",
+  "moustache2",
+  "moustache3",
+  "moustache4",
+  "moustache5",
+  "moustache6",
+  "moustache7",
+  "moustache8",
+  "moustache9",
+  "babyface",
+];
+
+const mask = ["medicalMask", "respirator", "noMask"];
+
+export {
+  headStyle,
+  faceStyle,
+  skinColor,
+  hairColor,
+  accessories,
+  facialHair,
+  mask,
+};

@@ -1,0 +1,41 @@
+@import '../../../../style-variables.scss';
+
+.Select {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    margin-bottom: 8px;     
+    .select-icon {
+        transition: color $transition-slow;
+        color: $light-color;
+        padding: 3px;
+        svg {
+            width: 19px;
+            height: 19px;
+        }
+    }   
+    .select-icon:hover {
+        color: $light-main;
+    }
+    select {
+        outline: none;
+        border: none;
+        font-family: inherit;
+        font-size: 1.2rem;
+        text-align: center;
+        letter-spacing: inherit;
+        appearance: none;
+        border-radius: $corner-big;
+        user-select: none;
+        width: 140px;
+        padding: 2px 0;
+        transition: background-color $transition-slow;
+        cursor: pointer;
+        &:hover {
+            color: $light-bg;
+            background-color: $light-main;
+            
+        }
+    }
+}

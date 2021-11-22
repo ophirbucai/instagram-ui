@@ -2,12 +2,17 @@
 
 
 .ProfileHeader {
+  .open-customize {
+    all: unset;
+    position: absolute;
+  }
   .image {
     float: left;
     width: calc(33.333% - 1rem);
     display: flex;
     justify-content: center;
     margin-right: 3rem;
+    position: relative;
     .Avatar {
       box-shadow: 0 0.5em 2em $light-accent;
     }
@@ -29,7 +34,7 @@
         font-weight: 300;
         background:rgba(255, 255, 255, 0);
         border: none;
-        border-bottom: 2px dotted $light-main;
+        border-bottom: 2px dotted #aaa;
         outline: none;
         padding: 0;
         margin: 0.35rem 1rem 0.66rem 0;
@@ -87,8 +92,16 @@
       &:focus {
         outline: 0.5rem auto $light-color; //#4d90fe
       }
+      &:first-child {
+        color: $pure-white;
+      }
       &:nth-child(2) {
         margin-top: 0.5rem;    
+      }
+      &[type=submit] {
+        background: $light-main;
+        border-color: $light-main;
+        font-weight: 500;
       }
     }
   }
@@ -129,6 +142,9 @@ body.Dark {
       }
     .settings {
       font-size: 0.75rem;
+      .customize-username input {
+        border-bottom: 2px dotted #ccc;
+      }
       .button-container button {
         font-size: 0.85rem;
         padding: 0 0.5em;

@@ -13,6 +13,7 @@ import {
   unfollow,
   me as getLoggedUser,
 } from "../../services/userService";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons/faCog";
 import "./ProfileHeader.scss";
@@ -27,6 +28,10 @@ function ProfileHeader({ username, postsCount }) {
   const [followersCount, setFollowersCount] = useState(null);
   const [customizeShown, setCustomizeShown] = useState(false);
   const [customAvatarStyle, setCustomAvatarStyle] = useState(user.customStyle);
+
+  const submitChanges = (values) => {
+    console.log(values);
+  };
 
   const isFollowing = useMemo(() => {
     return me?.following?.includes(user._id);
@@ -65,7 +70,7 @@ function ProfileHeader({ username, postsCount }) {
   return (
     <div className="ProfileHeader">
       <Formik
-        initialValues={{ username: username }}
+        initialValues={{ username: username, skinColor: "#ffcc99" }}
         validationSchema={yup.object().shape({
           username: yup
             .string()
@@ -85,7 +90,7 @@ function ProfileHeader({ username, postsCount }) {
               }
             ),
         })}
-        onSubmit={() => console.log("hi")}>
+        onSubmit={submitChanges}>
         <Form>
           <div className="image">
             <Avatar
@@ -94,7 +99,18 @@ function ProfileHeader({ username, postsCount }) {
               customStyle={customAvatarStyle}
             />
             {customizeShown && (
-              <ProfileCustomize setCustomAvatarStyle={setCustomAvatarStyle} />
+              <DropdownMenu.Root>
+                <DropdownMenu.Trigger className="open-customize">
+                  <FontAwesomeIcon icon={faCog} />
+                </DropdownMenu.Trigger>
+                <DropdownMenu.Content side="right">
+                  {/* <DropdownMenu.Item> */}
+                  <ProfileCustomize
+                    setCustomAvatarStyle={setCustomAvatarStyle}
+                  />
+                  {/* </DropdownMenu.Item> */}
+                </DropdownMenu.Content>
+              </DropdownMenu.Root>
             )}
           </div>
           <div className="settings">
@@ -124,7 +140,7 @@ function ProfileHeader({ username, postsCount }) {
                 )
               ) : customizeShown ? (
                 <div>
-                  <button onClick={() => console.log("done")}>Finished</button>
+                  <button type="submit">Save Changes</button>
                   <button onClick={() => setCustomizeShown(false)}>
                     Discard
                   </button>

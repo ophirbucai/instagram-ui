@@ -22,7 +22,13 @@ function Avatar({ username, size, customStyle }) {
           dangerouslySetInnerHTML={{
             __html: createAvatar(style, {
               seed: username,
+              facialHairProbability: 100,
+              facialHair: "babyface",
+              maskProbability: 100,
+              accessoriesProbability: 100,
+              accessories: "noAccessory",
               backgroundColor: "#ccc",
+              mask: "noMask",
               ...avatarCustomStyle,
             }),
           }}

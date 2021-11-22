@@ -1,18 +1,28 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import "./ProfileCustomize.scss";
-import { Field } from "formik";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Field, useFormikContext } from "formik";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {
-  faArrowAltCircleLeft,
-  faArrowAltCircleRight,
-} from "@fortawesome/free-solid-svg-icons/";
-import { headStyle, faceStyle, skinColor, hairColor } from "./customize-config";
+  headStyle,
+  faceStyle,
+  skinColor,
+  hairColor,
+  accessories,
+  mask,
+  facialHair,
+} from "./customize-config";
+import { TwitterPicker } from "react-color";
+import Select from "./Select/Select";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProfileCustomize({ setCustomAvatarStyle }) {
+  const { setFieldValue } = useFormikContext();
+
   const changeAttribute = useCallback(
     (attribute, selectedValue) => {
       setCustomAvatarStyle((obj) => {
-        let customStyle = Object.assign({}, obj);
+        let customStyle = { ...obj };
         customStyle[attribute] = selectedValue;
         return customStyle;
       });
@@ -20,45 +30,18 @@ export default function ProfileCustomize({ setCustomAvatarStyle }) {
     [setCustomAvatarStyle]
   );
 
-  const prev = useCallback(
-    (e) => {
-      try {
-        const attribute = e.target.previousElementSibling;
-        if (!attribute) {
-          return;
-        }
-        attribute.selectedIndex--;
-        if (attribute.selectedIndex === -1 || attribute.selectedIndex === 0) {
-          attribute.selectedIndex = attribute.length - 1;
-        }
-        const selectedValue = attribute.options[attribute.selectedIndex].value;
-        changeAttribute(attribute.name, selectedValue);
-      } catch (e) {
-        console.log(e);
+  const modify = useCallback(
+    (e, value, field) => {
+      if (!field) {
+        let { name: field } = e.target;
       }
-    },
-    [changeAttribute]
-  );
-
-  const next = useCallback(
-    (e) => {
-      try {
-        const attribute = e.target.nextElementSibling;
-        if (!attribute) {
-          return;
-        }
-        attribute.selectedIndex++;
-        if (attribute.selectedIndex === -1) {
-          attribute.selectedIndex++;
-          attribute.selectedIndex++;
-        }
-        const selectedValue = attribute.options[attribute.selectedIndex].value;
-        changeAttribute(attribute.name, selectedValue);
-      } catch (e) {
-        console.log(e);
+      if (!value) {
+        let { value } = e.target;
       }
+      setFieldValue(field, value);
+      changeAttribute(field, value);
     },
-    [changeAttribute]
+    [changeAttribute, setFieldValue]
   );
 
   return (
@@ -66,31 +49,61 @@ export default function ProfileCustomize({ setCustomAvatarStyle }) {
       <header>
         <h1>Customize Avatar</h1>
       </header>
-      <div className="select-group">
-        <FontAwesomeIcon
-          className="arrow"
-          icon={faArrowAltCircleRight}
-          onClick={next}></FontAwesomeIcon>
-        <Field
-          as="select"
-          name="head"
-          onChange={(e) =>
-            changeAttribute(
-              e.target.name,
-              e.target.options[e.target.selectedIndex].value
-            )
-          }>
-          <option style={{ display: "none" }}>Hair</option>
-          {headStyle.map((type, i) => (
-            <option key={i}>{type}</option>
-          ))}
-        </Field>
-        <FontAwesomeIcon
-          className="arrow"
-          icon={faArrowAltCircleLeft}
-          onClick={prev}></FontAwesomeIcon>
-      </div>
-      <div className="select-group">
+      <Select
+        cb={changeAttribute}
+        name="head"
+        styles={headStyle}
+        label="Head"
+      />
+      <Select
+        cb={changeAttribute}
+        name="face"
+        styles={faceStyle}
+        label="Face"
+      />
+      <Select
+        cb={changeAttribute}
+        name="facialHair"
+        styles={facialHair}
+        label="Beard"
+      />
+      <Select
+        cb={changeAttribute}
+        name="accessories"
+        styles={accessories}
+        label="Accessories"
+      />
+      <Select cb={changeAttribute} name="mask" styles={mask} label="Mask" />
+      <DropdownMenu.Root>
+        <DropdownMenu.Trigger className="open-colorpicker">
+          <FontAwesomeIcon icon={faAddressBook} />
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Content side="right">
+          <section className="colorpicker-group">
+            <label htmlFor="clothingColor">Clothes Color: </label>
+            <Field
+              as="input"
+              type="color"
+              name="clothingColor"
+              id="clothingColor"
+              onChange={modify}></Field>
+          </section>
+        </DropdownMenu.Content>
+      </DropdownMenu.Root>
+
+      {/* <section className="colorpicker-group">
+        <label htmlFor="skinColor">Skin Tone: </label>
+        <TwitterPicker
+          onChange={(color, e) => modify(e, color.hex, "skinColor")}
+          name="skinColor"
+          triangle="hide"
+          colors={skinColor}
+          id="skinColor"
+        />
+      </section> */}
+    </div>
+
+    /* <div className="select-group">
         <FontAwesomeIcon
           className="arrow"
           icon={faArrowAltCircleRight}
@@ -161,7 +174,6 @@ export default function ProfileCustomize({ setCustomAvatarStyle }) {
           className="arrow"
           icon={faArrowAltCircleLeft}
           onClick={prev}></FontAwesomeIcon>
-      </div>
-    </div>
+      </div> */
   );
 }
