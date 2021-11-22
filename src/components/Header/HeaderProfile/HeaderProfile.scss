@@ -1,0 +1,27 @@
+@import "/src/library/scss/shared-styles.scss";
+
+.HeaderProfile {
+  display: flex;
+  align-items: center;
+  margin: 7px;
+  user-select: none;
+  position: relative;
+  &__username {
+    color: $light-color;
+    margin-left: 6px;
+    font-weight: 500;
+    transition: color $transition-fast;
+    &:hover {
+      color: $dark-main;
+      cursor: pointer;
+    }
+  }
+}
+
+body.Dark {
+  .HeaderProfile {
+    &__username {
+      color: $pure-white;
+    }
+  }
+}

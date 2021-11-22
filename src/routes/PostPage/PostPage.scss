@@ -1,0 +1,80 @@
+@import "/src/library/scss/shared-styles.scss";
+
+.PostPage {
+  display: flex;
+  background: $background;
+  border-radius: $corner-big;
+  width: 65vw;
+  margin: 200px auto 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 20px;
+  overflow: hidden;
+  .images {
+  }
+  .like {
+    svg {
+      width: 48px;
+    }
+  }
+  header {
+    // align-self: flex-end;
+    justify-self: auto;
+    display: inline;
+    border: 1px solid salmon;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .user-group {
+      padding: 9px 8px;
+    }
+    .date {
+      padding: 5px;
+      svg {
+        margin-right: 5px;
+      }
+    }
+  }
+  .images {
+  }
+  .description,
+  .likes,
+  .comments-list,
+  .add-comment,
+  form {
+  }
+}
+//   justify-content: flex-end;
+//   .images {
+//       justify-self: flex-start;
+//   }
+//   header {
+//     padding: 0.8em 1.4em;
+//     display: flex;
+//     width: 40%;
+//     justify-content: space-between;
+//     align-items: center;
+//     .date svg {
+//       margin-right: 7px;
+//     }
+//   }
+//   .likes {
+//     margin-top: 20px;
+//   }
+// }
+
+// .user-group {
+
+//   display: flex;
+//   align-items: center;
+//   a {
+//     padding-left: 0.2em;
+//     text-decoration: none;
+//     font-weight: 500;
+//     color: $dark;
+//   }
+//   a:visited {
+//     color: inherit;
+//   }
+// }

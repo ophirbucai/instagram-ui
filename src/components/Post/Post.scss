@@ -1,0 +1,63 @@
+@import "/src/library/scss/shared-styles.scss";
+
+.Post {
+  background: $background;
+  border-radius: $corner;
+  width: 550px;
+  // margin: 0.6em 0;
+  margin: 0 auto;
+  header {
+    padding: 0.8em 1.4em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .date svg {
+      margin-right: 7px;
+    }
+  }
+  .description {
+    h1 {
+      margin: 0;
+    }
+  }
+
+  h2,
+  p {
+    // text-align: center;
+  }
+  .likes {
+    // margin-top: 20px;
+    display: flex;
+    user-select: none;
+    align-items: center;
+    // padding: 0.5em 0.9em;
+    .toggle-like-button {
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0.5em 0.8em;
+      font-size: 1.15em;
+      transition: 100ms;
+      &:hover {
+        color: $dark-main;
+        transform: scale(1.2);
+      }
+      svg {
+      }
+    }
+  }
+}
+
+.user-group {
+  display: flex;
+  align-items: center;
+  a {
+    padding-left: 0.2em;
+    text-decoration: none;
+    font-weight: 500;
+    color: $dark;
+  }
+  a:visited {
+    color: inherit;
+  }
+}

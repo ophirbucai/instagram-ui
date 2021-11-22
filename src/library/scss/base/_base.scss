@@ -1,0 +1,56 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: "Red Hat Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding: 0 0 3rem;
+  min-height: 100vh;
+  -moz-osx-font-smoothing: grayscale;
+  //background: rgb(2, 22, 45);
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  line-height: 21px;
+}
+
+img {
+  display: block;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+body {
+  background: #f2f1f0;
+}
+
+body.Dark {
+  // background: rgb(2, 22, 45);
+  background: #262627;
+}
+
+input,
+textarea,
+button {
+  &:autofill {
+    font-size: inherit;
+  }
+  font-size: inherit;
+}
+:-internal-autofill-previewed {
+  font-size: inherit !important;
+}
