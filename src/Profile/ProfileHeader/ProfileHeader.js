@@ -67,8 +67,6 @@ function ProfileHeader({ username, postsCount }) {
     initUser();
   }, [username]);
 
-  console.log("after :D");
-
   return (
     <div className="ProfileHeader">
       <Formik

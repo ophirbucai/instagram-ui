@@ -24,6 +24,7 @@ function PostCreate() {
       return "1 / 1";
     }
   }
+  console.log("asdasd");
   const history = useHistory();
   const submit = async (e) => {
     e.preventDefault();
