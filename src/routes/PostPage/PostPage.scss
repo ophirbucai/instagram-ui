@@ -1,28 +1,60 @@
 @import "/src/library/scss/shared-styles.scss";
 
 .PostPage {
+  // max-height: 60vh;
   display: flex;
   background: $background;
   border-radius: $corner-big;
-  width: 65vw;
-  margin: 200px auto 0;
+  width: 45vw;
+  margin: 50px auto 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   padding-bottom: 20px;
   overflow: hidden;
-  .images {
+
+  .description {
+    padding: 0 1em;
   }
-  .like {
-    svg {
-      width: 48px;
+  .likes svg {
+    margin-left: 0.2rem;
+  }
+  .Avatar {
+    box-shadow: 0 0.5rem 2rem $light-accent;
+  }
+  .comments-list {
+    padding: 0 1em;
+    font-size: 1.1em;
+  }
+  .add-comment {
+    margin: 0 auto;
+    padding: 0.6em 0em;
+    input {
+      border: 1px solid $light-accent;
+      border-radius: $corner;
+      padding: 0.2em 0.8em;
+      outline: $light-accent;
+      font-size: inherit;
+      line-height: 1.5em;
+      font-family: inherit;
+      width: 440px;
+
+      letter-spacing: inherit;
+      margin-right: 6px;
+
+      &[type="submit"] {
+        background: none;
+
+        width: 80px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 0.95em;
+      }
     }
   }
   header {
     // align-self: flex-end;
     justify-self: auto;
     display: inline;
-    border: 1px solid salmon;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,18 +63,38 @@
     }
     .date {
       padding: 5px;
+      margin-right: 5px;
       svg {
         margin-right: 5px;
       }
     }
   }
-  .images {
+}
+
+@media screen and (max-width: 1050px) {
+  .PostPage {
+    width: 65vw;
+    .add-comment input {
+      width: 400px;
+    }
   }
-  .description,
-  .likes,
-  .comments-list,
-  .add-comment,
-  form {
+}
+
+@media screen and (max-width: 900px) {
+  .PostPage {
+    width: 85vw;
+    .add-comment input {
+      width: 300px;
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .PostPage {
+    width: 100vw;
+    .add-comment input {
+      width: 400px;
+    }
   }
 }
 //   justify-content: flex-end;

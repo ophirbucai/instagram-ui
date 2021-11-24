@@ -1,7 +1,45 @@
 @import "/src/library/scss/shared-styles.scss";
 
 .register-or-login-wrap {
-  padding: 200px 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../Header/Logo/favpng_cool-flame-fire.png") top center;
+
+  padding: 150px 0;
+  height: 100vh;
+  .Logo {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+
+    span {
+      font-size: 28px;
+    }
+  }
+  .headline {
+    color: $pure-white;
+    font-size: 48px;
+    letter-spacing: 1px;
+    line-height: 1.2em;
+    animation-name: fadeInDown;
+    animation-duration: #{$speed};
+    animation-fill-mode: both;
+    span {
+      color: $light-main;
+      font-size: 60px;
+      letter-spacing: 0;
+      animation-name: fadeInDown;
+      animation-duration: #{$speed};
+      animation-fill-mode: both;
+    }
+  }
+
+  .logo-container {
+    width: 38px;
+  }
+  h1 {
+    text-align: center;
+    padding: 100px;
+  }
   > .inside {
     width: 450px;
     margin: 0 auto;
@@ -9,6 +47,7 @@
     padding: 2em 2.5em;
     box-shadow: 0 0 2em $shadow;
     border-radius: $corner;
+
     .header {
       margin: 0.7em 0 1.9em;
       h2 {

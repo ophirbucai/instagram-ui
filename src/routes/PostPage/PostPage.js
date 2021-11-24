@@ -6,7 +6,7 @@ import "./PostPage.scss";
 
 export default function PostPage() {
   const { id } = useParams();
-  console.log("id", id);
+
   const [data, setData] = useState(null);
   useEffect(() => {
     async function initPost() {
@@ -15,7 +15,6 @@ export default function PostPage() {
     }
     initPost();
   }, [id]);
-  console.log("data", data);
 
   return <>{data && <Post data={data} className="PostPage" />}</>;
 }

@@ -3,7 +3,16 @@
 .ProfileHeader {
   .open-customize {
     all: unset;
-    position: absolute;
+
+    svg {
+      bottom: 0;
+      right: 100px;
+      // background-color: $light-main;
+      border-radius: 10px;
+      position: absolute;
+      width: 28px;
+      height: 28px;
+    }
   }
   .image {
     float: left;
@@ -92,7 +101,7 @@
       &:focus {
         outline: 0.5rem auto $light-color; //#4d90fe
       }
-      &:first-child {
+      &[type="submit"] {
         color: $pure-white;
       }
       &:nth-child(2) {
@@ -159,7 +168,6 @@ body.Dark {
       .customize-username input {
         color: $pure-white;
       }
-
       .error-message:after {
         border-color: $light-bg transparent transparent transparent;
       }

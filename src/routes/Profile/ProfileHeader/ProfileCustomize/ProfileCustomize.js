@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import "./ProfileCustomize.scss";
-import { Field, useFormikContext } from "formik";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { useFormikContext } from "formik";
 import {
   headStyle,
   faceStyle,
@@ -10,11 +9,10 @@ import {
   accessories,
   mask,
   facialHair,
+  backgroundColor,
 } from "./customize-config";
 import { TwitterPicker } from "react-color";
 import Select from "./Select/Select";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProfileCustomize({ setCustomAvatarStyle }) {
   const { setFieldValue } = useFormikContext();
@@ -33,9 +31,11 @@ export default function ProfileCustomize({ setCustomAvatarStyle }) {
   const modify = useCallback(
     (e, value, field) => {
       if (!field) {
+        // eslint-disable-next-line
         let { name: field } = e.target;
       }
       if (!value) {
+        // eslint-disable-next-line
         let { value } = e.target;
       }
       setFieldValue(field, value);
@@ -74,26 +74,11 @@ export default function ProfileCustomize({ setCustomAvatarStyle }) {
         label="Accessories"
       />
       <Select cb={changeAttribute} name="mask" styles={mask} label="Mask" />
-      <DropdownMenu.Root>
-        <DropdownMenu.Trigger className="open-colorpicker">
-          <FontAwesomeIcon icon={faAddressBook} />
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Content side="right">
-          <section className="colorpicker-group">
-            <label htmlFor="clothingColor">Clothes Color: </label>
-            <Field
-              as="input"
-              type="color"
-              name="clothingColor"
-              id="clothingColor"
-              onChange={modify}></Field>
-          </section>
-        </DropdownMenu.Content>
-      </DropdownMenu.Root>
+
       <section className="colorpicker-group">
-        <label htmlFor="skinColor">Skin Tone: </label>
+        <label htmlFor="skinColor">Hair Color: </label>
         <TwitterPicker
-          onChange={(color, e) => modify(e, color.hex, "skinColor")}
+          onChange={(color, e) => modify(e, color.hex, "hairColor")}
           name="hairColor"
           triangle="hide"
           colors={hairColor}
@@ -101,88 +86,25 @@ export default function ProfileCustomize({ setCustomAvatarStyle }) {
         />
       </section>
       <section className="colorpicker-group">
-        <label htmlFor="skinColor">Skin Tone: </label>
+        <label htmlFor="skinColor">Skin Tone:</label>
         <TwitterPicker
           onChange={(color, e) => modify(e, color.hex, "skinColor")}
-          name="skinColor"
           triangle="hide"
+          name="skinColor"
           colors={skinColor}
           id="skinColor"
         />
       </section>
+      <section className="colorpicker-group">
+        <label htmlFor="skinColor">Background:</label>
+        <TwitterPicker
+          onChange={(color, e) => modify(e, color.hex, "backgroundColor")}
+          triangle="hide"
+          name="backgroundColor"
+          colors={backgroundColor}
+          id="backgroundColor"
+        />
+      </section>
     </div>
-
-    /* <div className="select-group">
-        <FontAwesomeIcon
-          className="arrow"
-          icon={faArrowAltCircleRight}
-          onClick={next}></FontAwesomeIcon>
-        <Field
-          as="select"
-          name="face"
-          onChange={(e) =>
-            changeAttribute(
-              e.target.name,
-              e.target.options[e.target.selectedIndex].value
-            )
-          }>
-          <option style={{ display: "none" }}>Face</option>
-          {faceStyle.map((type, i) => (
-            <option key={i}>{type}</option>
-          ))}
-        </Field>
-        <FontAwesomeIcon
-          className="arrow"
-          icon={faArrowAltCircleLeft}
-          onClick={prev}></FontAwesomeIcon>
-      </div>
-      <div className="select-group">
-        <FontAwesomeIcon
-          className="arrow"
-          icon={faArrowAltCircleRight}
-          onClick={next}></FontAwesomeIcon>
-        <Field
-          as="select"
-          name="skinColor"
-          onChange={(e) =>
-            changeAttribute(
-              e.target.name,
-              e.target.options[e.target.selectedIndex].value
-            )
-          }>
-          <option style={{ display: "none" }}>Skin Tone</option>
-          {skinColor.map((type, i) => (
-            <option key={i}>{type}</option>
-          ))}
-        </Field>
-        <FontAwesomeIcon
-          className="arrow"
-          icon={faArrowAltCircleLeft}
-          onClick={prev}></FontAwesomeIcon>
-      </div>
-      <div className="select-group">
-        <FontAwesomeIcon
-          className="arrow"
-          icon={faArrowAltCircleRight}
-          onClick={next}></FontAwesomeIcon>
-        <Field
-          as="select"
-          name="hairColor"
-          onChange={(e) =>
-            changeAttribute(
-              e.target.name,
-              e.target.options[e.target.selectedIndex].value
-            )
-          }>
-          <option style={{ display: "none" }}>Hair Color</option>
-          {hairColor.map((type, i) => (
-            <option key={i}>{type}</option>
-          ))}
-        </Field>
-        <FontAwesomeIcon
-          className="arrow"
-          icon={faArrowAltCircleLeft}
-          onClick={prev}></FontAwesomeIcon>
-      </div> */
   );
 }

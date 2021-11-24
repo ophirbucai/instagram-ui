@@ -38,23 +38,21 @@ export default function ImageEdit({ displayedImage, index, aspectRatio }) {
 
   return (
     <div className="ImageEdit" style={{ paddingBottom: maintainAspectRatio }}>
-      <div>
-        <div className="preview">
-          <Cropper
-            image={displayedImage}
-            crop={crop}
-            zoom={zoom}
-            aspect={aspectRatio}
-            onCropChange={setCrop}
-            onCropComplete={onCropComplete}
-            onZoomChange={setZoom}
-            objectFit={true}
-            classes={{
-              mediaClassName: "crop-media",
-            }}
-          />
-        </div>
+      <div className="preview">
+        <Cropper
+          image={displayedImage}
+          crop={crop}
+          zoom={zoom}
+          aspect={aspectRatio}
+          onCropChange={setCrop}
+          onCropComplete={onCropComplete}
+          onZoomChange={setZoom}
+          classes={{
+            mediaClassName: "crop-media",
+          }}
+        />
       </div>
+
       <div className="finished">
         <button onClick={cropComplete}>Crop Image</button>
       </div>

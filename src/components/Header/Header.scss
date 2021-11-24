@@ -7,14 +7,12 @@
   height: 60px;
   padding: 10px;
   background: $light-gradient;
-  margin-bottom: 20px;
   box-shadow: 0 5px 1em $light-shadow;
 }
 
 body.Dark {
   .Header {
     background: $dark-gradient;
-    margin-bottom: 20px;
     box-shadow: 0 0 0 $dark-shadow;
   }
 }

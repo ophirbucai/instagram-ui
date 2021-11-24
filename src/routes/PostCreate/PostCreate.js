@@ -2,11 +2,14 @@ import React, { createContext, useState } from "react";
 import { create } from "../../services/postService";
 import ImageEdit from "./ImageEdit/ImageEdit";
 import { useHistory } from "react-router-dom";
+import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import "./PostCreate.scss";
 import PostCreateDropzone from "./PostCreateDropzone/PostCreateDropzone";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquare } from "@fortawesome/free-solid-svg-icons";
 export const PostCreateContext = createContext([]);
 
 function PostCreate() {
@@ -14,17 +17,7 @@ function PostCreate() {
   const [displayedImages, setDisplayedImages] = useState([]);
   const [description, setDescription] = useState("");
   const [aspectRatio, setAspectRatio] = useState(4 / 3);
-  const aspects = [4 / 3, 16 / 9, 1 / 1];
-  function getAspectLabel(aspect) {
-    if (aspect === 4 / 3) {
-      return "4 / 3";
-    } else if (aspect === 16 / 9) {
-      return "16 / 9";
-    } else {
-      return "1 / 1";
-    }
-  }
-  console.log("asdasd");
+  const aspects = [1 / 1, 3 / 4, 5 / 4];
   const history = useHistory();
   const submit = async (e) => {
     e.preventDefault();
@@ -74,7 +67,37 @@ function PostCreate() {
           {images.length > 0 && (
             <div className="controller">
               <label htmlFor="aspect">Select an Aspect Ratio:</label>
-              <select
+
+              <ToggleGroup.Root
+                type="single"
+                orientation="horizontal"
+                className="aspect-root"
+                onValueChange={(value) => setAspectRatio(value)}>
+                <ToggleGroup.Item className="aspect-button" value={aspects[0]}>
+                  <FontAwesomeIcon
+                    icon={faSquare}
+                    color="#ccc"
+                    style={{ transform: "scale(1.2)" }}
+                  />
+                </ToggleGroup.Item>
+                <ToggleGroup.Item className="aspect-button" value={aspects[1]}>
+                  <FontAwesomeIcon
+                    icon={faSquare}
+                    color="#ccc"
+                    style={{ transform: "scaleY(1.5)" }}
+                  />
+                </ToggleGroup.Item>
+                <ToggleGroup.Item className="aspect-button" value={aspects[2]}>
+                  {" "}
+                  <FontAwesomeIcon
+                    icon={faSquare}
+                    color="#ccc"
+                    style={{ transform: "scaleX(1.5)" }}
+                  />
+                </ToggleGroup.Item>
+              </ToggleGroup.Root>
+
+              {/* <select
                 name="aspect"
                 id="aspect"
                 onChange={(e) =>
@@ -85,7 +108,7 @@ function PostCreate() {
                     {getAspectLabel(aspect)}
                   </option>
                 ))}
-              </select>
+              </select> */}
             </div>
           )}
           <div className="form-group">

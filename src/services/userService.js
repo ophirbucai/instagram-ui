@@ -1,5 +1,19 @@
 import config from "../config";
 
+async function updateUser(form) {
+  const token = localStorage.getItem("token");
+  const { customStyle, id } = form;
+  const res = await fetch(config.apiUrl + "/user/" + id, {
+    method: "PUT",
+    body: JSON.stringify(customStyle),
+    header: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+  });
+  return res.json();
+}
+
 async function register(user) {
   const res = await fetch(config.apiUrl + "/user", {
     method: "POST",
@@ -94,4 +108,14 @@ async function unfollow(username) {
   });
 }
 
-export { register, login, me, getUser, isAvailable, search, follow, unfollow };
+export {
+  updateUser,
+  register,
+  login,
+  me,
+  getUser,
+  isAvailable,
+  search,
+  follow,
+  unfollow,
+};

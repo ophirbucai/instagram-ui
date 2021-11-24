@@ -38,6 +38,9 @@ function Search() {
         {results.map((result) => (
           <SearchResult key={result._id} user={result} />
         ))}
+        {!query.length
+          ? "Start typing to search for a user."
+          : !results.length && "No results found."}
       </div>
     </div>
   );

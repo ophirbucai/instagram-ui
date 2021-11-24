@@ -2,36 +2,80 @@ import React, { useState, useCallback } from "react";
 import "./Post.scss";
 import Avatar from "../../components/Avatar/Avatar";
 import { Link } from "react-router-dom";
-// import config from '../../config';
+import moment from "moment";
 import PostDate from "./PostDate/PostDate";
 import PostLike from "./PostLike/PostLike";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons/faClock";
+import { faClock as faClockWhite } from "@fortawesome/free-regular-svg-icons";
 import Carousel from "../Carousel/Carousel";
+import { createComment, getComments } from "../../services/postService";
+import { useEffect } from "react/cjs/react.development";
+import { Virtuoso } from "react-virtuoso";
 
 export default function Post({ data: post, className }) {
   const [likesCount, setLikesCount] = useState(post.likes.length);
   const [commentValue, setCommentValue] = useState("");
+  const [comments, setComments] = useState([]);
   const submitComment = useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault();
-      console.log(commentValue);
+      await createComment(post._id, commentValue);
+      setCommentValue("");
     },
-    [commentValue]
+    [post._id, commentValue]
   );
+  useEffect(() => {
+    const getCommentsFn = async () => {
+      const comments = await getComments(post._id);
+      setComments(comments.slice(0).reverse());
+    };
+    getCommentsFn();
+  }, [post._id, submitComment]);
 
   function likesCounter(operator) {
     if (operator === "+") setLikesCount((likesCount) => likesCount + 1);
     if (operator === "-") setLikesCount((likesCount) => likesCount - 1);
   }
 
+  const commentElem = useCallback((index, comment) => {
+    return (
+      <div key={index}>
+        <strong style={{ fontSize: "1em" }}>
+          {comment.author.username + "  "}
+        </strong>
+        <span>{comment.content + " "}</span>
+        <FontAwesomeIcon icon={faClockWhite} size="xs" color="#0f0b20" />
+        <span
+          style={{
+            fontWeight: "700",
+            fontSize: "0.9em",
+            padding: "5px",
+          }}>
+          {moment(comment.createdAt)
+            .fromNow(true)
+            .replace(" minutes", "m")
+            .replace(" minute", "m")
+            .replace(" seconds", "s")
+            .replace(" second", "s")
+            .replace(" days", "d")
+            .replace(" day", "d")
+            .replace(" hours", "h")
+            .replace(" hour", "h")
+            .replace("an", "1")
+            .replace("a few", "1")
+            .replace("a", "1")}
+        </span>
+      </div>
+    );
+  }, []);
+
   return (
     <article className={className || "Post"}>
       <header>
         <div className="user-group">
-          <Avatar username={post.author.username} size="md" />
-
           <Link to={"/profile/" + post.author.username}>
+            <Avatar username={post.author.username} size="md" />
             <span>{post.author.username}</span>
           </Link>
         </div>
@@ -40,11 +84,12 @@ export default function Post({ data: post, className }) {
           <PostDate date={post.createdAt} />
         </div>
       </header>
+
       <div className="images">
         <Carousel images={post.images} />
       </div>
       <div className="description">
-        <h1>{post.body}</h1>
+        <h1>{post.description}</h1>
       </div>
       <div className="likes">
         <PostLike
@@ -54,13 +99,20 @@ export default function Post({ data: post, className }) {
         />
         <span>{likesCount} Likes</span>
       </div>
-      <div className="comments-list">
-        {post.comments && post.comments.map((comment) => <div>{comment}</div>)}
+      <div
+        className="comments-list"
+        style={{ height: comments.length * 25, maxHeight: "115px" }}>
+        <Virtuoso
+          data={comments}
+          itemContent={commentElem}
+          totalCount={comments.length}
+        />
       </div>
       <div className="add-comment">
         <form onSubmit={submitComment}>
           <input
             type="text"
+            placeholder="Write something... "
             onChange={(e) => setCommentValue(e.target.value)}
             value={commentValue}
           />

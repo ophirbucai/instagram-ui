@@ -82,6 +82,12 @@ function App() {
               <Feed />
             </Route>
           </Switch>
+          <footer>
+            <a href="mailto:ophirbucai@gmail.com">
+              SPICY - Social Photo Sharing App{" "}
+              <strong>©2021 Ophir Bucai</strong>
+            </a>
+          </footer>
         </div>
       </UserContext.Provider>
     </ThemeContext.Provider>

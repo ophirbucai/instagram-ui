@@ -3,36 +3,24 @@
 .ImageEdit {
   position: relative;
   object-fit: cover;
-  width: 100%;
   height: auto;
   width: auto;
-  object-fit: cover;
+
+  button {
+    background: $dark-main;
+    color: $pure-white;
+    border: none;
+    padding: 0.5em 0.9em;
+    position: relative;
+    // transform: translate(-50%, -50%);
+  }
   .finished {
-    position: absolute;
-    left: 50%;
-    right: 0;
-    top: 50%;
-    button {
-      background: $dark-main;
-      color: $pure-white;
-      border: none;
-      padding: 0.5em 0.9em;
-      position: relative;
-      transform: translate(-50%, -50%);
-    }
+    position: aboslute;
   }
   .crop-media {
     width: 100%;
-    height: auto;
     max-width: initial !important;
     max-height: initial !important;
-  }
-  .controller {
-    //  position: fixed;
-    //  bottom: 0;
-    //  left: 0;
-    //  right: 0;
-    //  height: 20%;
   }
 }
 //  position: absolute;

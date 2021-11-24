@@ -11,8 +11,10 @@ import {
   follow,
   unfollow,
   isAvailable,
+  updateUser,
   me as getLoggedUser,
 } from "../../../services/userService";
+import { useParams } from "react-router-dom";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons/faCog";
@@ -22,16 +24,23 @@ import * as yup from "yup";
 import ProfileCustomize from "./ProfileCustomize/ProfileCustomize";
 import Avatar from "../../../components/Avatar/Avatar";
 
-function ProfileHeader({ username, postsCount }) {
+function ProfileHeader({ postsCount }) {
   const { user: me, setUser: setMe } = useContext(UserContext);
   const [user, setUser] = useState({});
   const [followersCount, setFollowersCount] = useState(null);
   const [customizeShown, setCustomizeShown] = useState(false);
   const [customAvatarStyle, setCustomAvatarStyle] = useState(user.customStyle);
 
-  const submitChanges = (values) => {
-    console.log(values);
-  };
+  const { username } = useParams();
+
+  useEffect(() => {
+    async function initUser() {
+      const user = await getUser(username);
+      setFollowersCount(user.followers.length);
+      setUser(user);
+    }
+    initUser();
+  }, [username]);
 
   const isFollowing = useMemo(() => {
     return me?.following?.includes(user._id);
@@ -58,19 +67,25 @@ function ProfileHeader({ username, postsCount }) {
       .catch(() => setFollowersCount((prev) => prev + 1));
   }, [setMe, username]);
 
-  useEffect(() => {
-    async function initUser() {
-      const user = await getUser(username);
-      setFollowersCount(user.followers.length);
-      setUser(user);
-    }
-    initUser();
-  }, [username]);
+  const submitChanges = useCallback(
+    async (values) => {
+      const newValues = { ...values };
+      delete newValues.username;
+      if (!Object.keys(newValues).length) {
+        return;
+      }
+      const formToSend = { id: user._id, customStyle: newValues };
+
+      console.log(formToSend);
+      await updateUser(formToSend);
+    },
+    [user._id]
+  );
 
   return (
     <div className="ProfileHeader">
       <Formik
-        initialValues={{ username: username, skinColor: "#ffcc99" }}
+        initialValues={{ username: username }}
         validationSchema={yup.object().shape({
           username: yup
             .string()

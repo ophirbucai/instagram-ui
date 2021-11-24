@@ -8,13 +8,13 @@ import { faHeart as regHeart } from "@fortawesome/free-regular-svg-icons";
 function PostLike({ postId, likes, likesCounter }) {
   const { user } = useContext(UserContext);
   const [hasLiked, setHasLiked] = useState(likes.includes(user._id));
-  // const [likesCount, setLikesCount] = useState(likes.length);
 
   useEffect(() => {
     setHasLiked(likes.includes(user._id));
   }, [user, likes]);
 
-  function like() {
+  function like(e) {
+    e.preventDefault();
     setHasLiked(true);
     likesCounter("+");
     postLike(postId).catch(() => {
@@ -22,7 +22,8 @@ function PostLike({ postId, likes, likesCounter }) {
       likesCounter("-");
     });
   }
-  function unlike() {
+  function unlike(e) {
+    e.preventDefault();
     setHasLiked(false);
     likesCounter("-");
     postUnlike(postId).catch(() => {

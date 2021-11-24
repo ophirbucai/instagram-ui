@@ -16,7 +16,6 @@ body {
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
-  padding: 0 0 3rem;
   min-height: 100vh;
   -moz-osx-font-smoothing: grayscale;
   //background: rgb(2, 22, 45);
@@ -53,4 +52,25 @@ button {
 }
 :-internal-autofill-previewed {
   font-size: inherit !important;
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 25px;
+  font-size: 1.1rem;
+  a {
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: $dark;
+    text-shadow: 0 0 2px $light-accent;
+  }
+}
+
+body.Dark {
+  footer a {
+    color: $pure-white;
+    text-shadow: 0 0 2px $dark-accent;
+  }
 }

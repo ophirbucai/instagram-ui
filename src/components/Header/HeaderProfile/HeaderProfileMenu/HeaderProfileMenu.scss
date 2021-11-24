@@ -1,12 +1,16 @@
 @import "/src/library/scss/shared-styles.scss";
 
 .header-profile-menu {
+  z-index: 1;
   background: $pure-white;
   border-radius: $corner;
   box-shadow: 0 0 0.66em $shadow;
   position: absolute;
   right: 0;
   top: 100%;
+  animation-name: fadeInDown;
+  animation-duration: #{$speed / 2};
+  animation-fill-mode: both;
   .close-icon {
     position: absolute;
     top: 0;
