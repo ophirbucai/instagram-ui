@@ -79,10 +79,15 @@
       line-height: 1;
       align-items: center;
       justify-content: center;
-      margin-left: 1px;
-      padding: 0;
-      transition: background-color $transition-fast;
+
+      transition: background-color $transition-fast, color $transition-fast;
       text-align: center;
+      color: #ccc;
+      cursor: pointer;
+      svg {
+        margin-top: 1px;
+        color: inherit !important;
+      }
       &:first-child {
         margin-left: 0;
         border-top-left-radius: 4px;
@@ -91,6 +96,7 @@
       &[data-state="on"] {
         background-color: $light-main;
         color: $pure-white;
+        color: white;
       }
       &:hover {
         background-color: $light-main;

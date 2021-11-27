@@ -11,14 +11,17 @@ export default function RegisterOrLoginWrap({ children }) {
       <h1 className="headline">
         Take your photos <br />
         <div className="animated-word">
-          <span>f</span>
+          {"further.".split("").map((letter, key) => (
+            <span key={key}>{letter}</span>
+          ))}
+          {/* <span>f</span>
           <span>u</span>
           <span>r</span>
           <span>t</span>
           <span>h</span>
           <span>e</span>
           <span>r</span>
-          <span>.</span>
+          <span>.</span> */}
         </div>
       </h1>
       <div className="inside">{children}</div>

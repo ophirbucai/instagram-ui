@@ -10,7 +10,7 @@ $speed: 1250ms;
     transform: translateX(0);
   }
 }
-@for $i from 1 through 8 {
+@for $i from 1 through 30 {
   span:nth-child(#{$i}) {
     animation-delay: #{$i * $delay};
   }
