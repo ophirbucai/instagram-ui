@@ -9,18 +9,14 @@ function Feed() {
   const [posts, setPosts] = useState([]);
 
   const post = useCallback((index, post) => {
-    return (
-      <Link to={"/post/" + post._id}>
-        <Post data={post} />
-      </Link>
-    );
+    return <Post data={post} />;
   }, []);
 
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const posts = await getFeed();
-        setPosts(posts.slice(0).reverse());
+        const res = await getFeed();
+        setPosts(res.slice(0).reverse());
       } catch (err) {
         console.log(err);
       }
@@ -28,7 +24,6 @@ function Feed() {
     getPosts();
   }, []);
 
-  console.log(posts);
   return (
     <div className="Feed">
       <Virtuoso data={posts} itemContent={post} />

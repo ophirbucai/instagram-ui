@@ -5,9 +5,13 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import PostDate from "./PostDate/PostDate";
 import PostLike from "./PostLike/PostLike";
+import SwiperOphir from "../../components/Carousel/SwiperOphir";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons/faClock";
-import { faClock as faClockWhite } from "@fortawesome/free-regular-svg-icons";
+import {
+  faClock as faClockWhite,
+  faCommentAlt,
+} from "@fortawesome/free-regular-svg-icons";
 import Carousel from "../Carousel/Carousel";
 import { createComment, getComments } from "../../services/postService";
 import { useEffect } from "react/cjs/react.development";
@@ -86,7 +90,8 @@ export default function Post({ data: post, className }) {
       </header>
 
       <div className="images">
-        <Carousel images={post.images} />
+        {/* <Carousel images={post.images} /> */}
+        <SwiperOphir images={post.images} />
       </div>
       <div className="description">
         <h1>{post.description}</h1>
@@ -97,11 +102,15 @@ export default function Post({ data: post, className }) {
           likes={post.likes}
           postId={post._id}
         />
-        <span>{likesCount} Likes</span>
+
+        <Link to={"/post/" + post._id}>
+          <FontAwesomeIcon icon={faCommentAlt} size="1x" color="#0f0b20" />
+        </Link>
       </div>
       <div
         className="comments-list"
         style={{ height: comments.length * 25, maxHeight: "115px" }}>
+        <span>{likesCount} Likes</span>
         <Virtuoso
           data={comments}
           itemContent={commentElem}
