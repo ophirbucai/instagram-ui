@@ -3,10 +3,12 @@ import config from "../config";
 async function updateUser(form) {
   const token = localStorage.getItem("token");
   const { customStyle, id } = form;
+  debugger;
+  console.log(`customStyle`, customStyle);
   const res = await fetch(config.apiUrl + "/user/" + id, {
     method: "PUT",
     body: JSON.stringify(customStyle),
-    header: {
+    headers: {
       "Content-Type": "application/json",
       Authorization: token,
     },

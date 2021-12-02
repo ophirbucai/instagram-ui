@@ -15,7 +15,7 @@
   background: $pure-white;
   box-shadow: 0 0.5rem 2rem $dark-accent;
   animation-name: fadeInDown;
-  animation-duration: #{$speed / 2};
+  animation-duration: $speed-slower;
   animation-fill-mode: both;
 
   header {

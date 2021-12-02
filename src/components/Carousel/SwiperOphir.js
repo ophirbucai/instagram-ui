@@ -9,15 +9,31 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function SwiperOphir({ images }) {
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const [current, setCurrent] = useState(0);
+
   const nextSlide = () => {
     setCurrent(current === images.length - 1 ? 0 : current + 1);
   };
   const prevSlide = () => {
     setCurrent(current === 0 ? images.length - 1 : current - 1);
   };
-  const [current, setCurrent] = useState(0);
+  const handleStart = (e) => {
+    console.log(`e.clientX`, e.clientX);
+    setTouchStart(e.clientX);
+    setTouchEnd(e.clientX);
+  };
+  const handleMove = (e) => {
+    setTouchEnd(e.clientX);
+  };
+  const handleEnd = () => {
+    const distance = touchEnd - touchStart;
+    console.log(`distance`, distance);
+    if (distance > 50) nextSlide();
+    if (distance < -50) prevSlide();
+  };
 
-  console.log(current);
   return (
     <section className="Carousel">
       {images.length > 1 && (
@@ -41,13 +57,20 @@ function SwiperOphir({ images }) {
       {images.map((image, i) => {
         return (
           <div className={i === current ? "slide active" : "slide"} key={i}>
-            {i === current && (
-              <img
-                className="image"
-                src={config.apiUrl + "/" + image}
-                alt={image.description}
-              />
-            )}
+            {/* {i === current && ( */}
+            <img
+              draggable="false"
+              onMouseDown={handleStart}
+              onTouchStart={handleStart}
+              onMouseMove={handleMove}
+              onTouchMove={handleMove}
+              onMouseUp={handleEnd}
+              onTouchEnd={handleEnd}
+              className="image"
+              src={config.apiUrl + "/" + image}
+              alt={image.description}
+            />
+            {/* )} */}
           </div>
         );
       })}

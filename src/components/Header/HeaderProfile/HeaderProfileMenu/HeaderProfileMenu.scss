@@ -9,7 +9,7 @@
   right: 0;
   top: 100%;
   animation-name: fadeInDown;
-  animation-duration: #{$speed / 2};
+  animation-duration: $speed-slower;
   animation-fill-mode: both;
   .close-icon {
     position: absolute;

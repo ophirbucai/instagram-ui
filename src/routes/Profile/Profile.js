@@ -20,6 +20,7 @@ export default function Profile() {
   return (
     <div className="Profile">
       <ProfileHeader username={username} postsCount={posts.length} />
+      {/* {Move Profile Customize here} */}
       <ProfileGallery items={posts} />
     </div>
   );

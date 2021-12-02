@@ -81,7 +81,7 @@ function ProfileHeader({ postsCount }) {
     },
     [user._id]
   );
-
+  console.log(username);
   return (
     <div className="ProfileHeader">
       <Formik

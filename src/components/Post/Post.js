@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import "./Post.scss";
 import Avatar from "../../components/Avatar/Avatar";
 import { Link } from "react-router-dom";
@@ -14,7 +14,6 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import Carousel from "../Carousel/Carousel";
 import { createComment, getComments } from "../../services/postService";
-import { useEffect } from "react/cjs/react.development";
 import { Virtuoso } from "react-virtuoso";
 
 export default function Post({ data: post, className }) {
